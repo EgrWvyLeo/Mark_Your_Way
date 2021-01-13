@@ -4,6 +4,7 @@
   padding: 0px;
   box-sizing: border-box;
   text-decoration: none;
+  text-align: center;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
     Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
 }
@@ -11,11 +12,14 @@
 /* variable */
 :root {
   --orange: #f29e4c;
+  --coralOrange: rgb(212, 118, 86);
   --midOrange: #f3b374;
   --lightOrange: #f1c453;
-  --lightOrangeDarker: #fdc434;
-  --lightOrangeLighter: #f3cd6f;
+  --lightOrangeDarker: #ecb02e;
+  --lightOrangeLighter: #f0bf65;
   --yellow: #efea5a;
+  --yellow1: #e7e36a;
+  --yellow2: #fcf882;
 }
 
 /* top navigation bar */
@@ -37,6 +41,7 @@ div[class^="top"] {
   text-align: center;
 }
 .Top #top_menu {
+  background-color: var(--midOrange);
   width: 70px;
   padding-top: 15px;
 }
@@ -74,7 +79,12 @@ div[class^="top"] {
   /* border-right: 5px soild black; */
 }
 .right {
-  background-color: var(--lightOrange);
+  /* background-color: var(--lightOrangeLighter); */
+  background-image: linear-gradient(
+    to right,
+    var(--lightOrangeDarker),
+    var(--lightOrangeLighter)
+  );
 }
 
 /* #line_divition {
@@ -89,32 +99,56 @@ div[class^="top"] {
 /* map  */
 .map {
   position: relative;
+  background-image: url("../image/IMG_3867.jpg");
+  background-size: contain;
+  background-repeat: no-repeat;
+  width: 100%;
+  height: 739px;
 }
 .liked,
 .default {
-  background-color: darkgreen;
+  background-color: var(--lightOrangeDarker);
   height: 30px;
   width: 70px;
   position: absolute;
+  border: none;
+  border-radius: 20px;
+  box-shadow: 0px 5px 2px rgb(163, 163, 163);
+  z-index: 1;
+  line-height: 30px;
+  cursor: pointer;
 }
+
+.liked:hover,
+.default:hover {
+  background-color: var(--lightOrangeLighter);
+}
+
+.liked:active,
+.default:active {
+  background-color: var(--lightOrangeLighter);
+  box-shadow: 0px 2px 5px rgb(53, 53, 53);
+  transform: translate(0px, 4px);
+}
+
 .liked {
   top: 640px;
   right: 20px;
 }
+
 .default {
-  top: 700px;
+  top: 690px;
   right: 20px;
 }
 
 /* landmark */
 .Landmark {
-  background-color: var(--lightOrangeDarker);
+  /* background-color: var(--lightOrangeLighter); */
   height: 500px;
   position: relative;
 }
 div[class^="landmark"] {
   /* position: absolute; */
-  border-radius: 30px;
   text-align: center;
 }
 .landmark_image {
@@ -124,6 +158,7 @@ div[class^="landmark"] {
   width: 95%;
   height: 400px;
   background-color: rgb(113, 196, 96);
+  border-radius: 30px;
 }
 .landmark_bottom {
   /* background-color: dodgerblue; */
@@ -137,21 +172,23 @@ div[class^="landmark"] {
 }
 .landmark_name {
   width: 55%;
-
+  border-radius: 20px;
   /* bottom: 20px;
   left: 50px; */
-  background-color: var(--yellow);
+  background-color: var(--yellow2);
+  border: 3px solid var(--yellow1);
 }
+
 .landmark_like {
   width: 70px;
-
+  border-radius: 30px;
   /* bottom: 10px;
   right: 150px; */
   background-color: darkkhaki;
 }
 .landmark_comment {
   width: 70px;
-
+  border-radius: 30px;
   /* bottom: 10px;
   right: 50px; */
   background-color: rgb(114, 109, 39);
@@ -160,11 +197,12 @@ div[class^="landmark"] {
 .landmark_test {
   width: 70px;
   background-color: grey;
+  border-radius: 30px;
 }
 
 /* unlockable */
 .Unlockable {
-  background-color: var(--lightOrangeLighter);
+  /* background-color: var(--lightOrangeLighter); */
   width: 100%;
   height: 239px;
   display: flex;
@@ -226,4 +264,148 @@ div[class^="unlockable"] {
 
 #side_nav #close_side_nav:hover {
   background-color: #2c699a;
+}
+
+/* style */
+/* #style {
+  position: absolute;
+  z-index: 2;
+  height: 600px;
+  width: 800px;
+  background-color: var(--coralOrange);
+  border-radius: 20px;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  display: none;
+  border: 1px solid rgb(255, 255, 255);
+  box-shadow: 5px 5px 7px grey;
+}
+
+#style_content {
+  position: relative;
+  height: 600px;
+  width: 800px;
+}
+
+#style_close {
+  position: absolute;
+  top: 2px;
+  right: 4px;
+  width: 50px;
+  height: 50px;
+  background-color: rgba(0, 0, 0, 0.425);
+  border-radius: 20px;
+  color: #fff;
+  cursor: pointer;
+} */
+
+/* center box general settings */
+.centerBox {
+  position: absolute;
+  z-index: 2;
+  height: 600px;
+  width: 800px;
+  background-color: var(--coralOrange);
+  border-radius: 20px;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  display: none;
+  border: 1px solid rgb(255, 255, 255);
+  box-shadow: 5px 5px 7px grey;
+}
+
+.centerBox_content {
+  position: relative;
+  height: 600px;
+  width: 800px;
+}
+
+.centerBox_close {
+  position: absolute;
+  top: 2px;
+  right: 4px;
+  width: 50px;
+  height: 50px;
+  background-color: rgba(0, 0, 0, 0.425);
+  border-radius: 20px;
+  color: #fff;
+  cursor: pointer;
+}
+
+/* style  */
+#style_font_title {
+  font-size: 30px;
+  position: absolute;
+  top: 50px;
+  left: 50px;
+}
+
+#style_font {
+  position: absolute;
+  top: 100px;
+  left: 50px;
+}
+
+#style_font > p {
+  margin-top: 10px;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+#style_font > p:hover {
+  color: rgb(70, 180, 207);
+}
+
+/* credits */
+[id^="credits_"] {
+  position: absolute;
+}
+
+#credits_iade {
+  /* position: absolute; */
+  bottom: 100px;
+  width: 500px;
+  height: 100px;
+  left: 50%;
+  transform: translate(-50%, 0);
+}
+
+#credits_name {
+  /* position: absolute; */
+  font-size: 50px;
+  font-style: bold;
+  top: 150px;
+  left: 50%;
+  transform: translate(-50%, 0);
+  text-shadow: 3px 3px 3px rgb(95, 95, 95);
+}
+
+/* pins on the map  */
+#Pin {
+  position: relative;
+  display: block;
+  width: 50%;
+  height: 739px;
+  top: 50px;
+}
+
+div[id^="pin"] {
+  position: absolute;
+  background-color: rgb(85, 221, 255);
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  border: 2px solid white;
+  cursor: pointer;
+}
+
+#pin_1 {
+  top: 50px;
+  left: 50px;
+}
+#pin_2 {
+  top: 100px;
+  left: 100px;
 }

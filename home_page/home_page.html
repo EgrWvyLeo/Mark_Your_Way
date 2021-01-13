@@ -28,8 +28,8 @@
       <div class="left">
         <!-- lisbon district map  -->
         <div class="map">
-          <button class="liked">liked landmark</button>
-          <button class="default">default landmark</button>map
+          <div class="liked">Like</div>
+          <div class="default">Default</div>
         </div>
       </div>
       <!-- right part  -->
@@ -45,21 +45,52 @@
           </div>
         </div>
         <!-- unlockable -->
-        <div class="Unlockable">
+        <!-- <div class="Unlockable">
           <div class="unlockable_picture"></div>
           <div class="unlockable_description"></div>
           <div class="unlockable_test"></div>
-        </div>
+        </div> -->
       </div>
     </div>
 
     <!-- side navigation  -->
     <div id="side_nav">
       <a id="close_side_nav" href="">Close</a>
-      <a href="">Tutorial</a>
-      <a href="">Style</a>
-      <a href="">Credits</a>
-      <a href="">Help</a>
+      <a id="Tutorial" href="#">Tutorial</a>
+      <a id="Style" href="#" >Style</a>
+      <a id="Credits" href="#">Credits</a>
+      <a id="Help" href="#">Help</a>
+    </div>
+
+    <!-- subcontent of the side navigation -->
+
+    <!-- style  -->
+    <div id="style" class="centerBox" >
+      <div id="style_content" class="centerBox_content">
+        <div id="style_close" class="centerBox_close">close</div>
+      <p id="style_font_title">Change Font</p>
+      <div id="style_font">
+<p id="style_font1">Fantasy</p>
+      <p id="style_font2">111</p>
+      <p id="style_font3">222</p>
+      <p id="style_font4">333</p>
+      </div>
+      </div>
+    </div>
+
+    <!-- credits  -->
+    <div id="credits" class="centerBox">
+      <div id="Credits_content" class="centerBox_content">
+        <p id="credits_name">Created by Yibai Zhang(Leo) & Vasco</p>
+        <div id="credits_close" class="centerBox_close">close</div>
+        <img src="../image/Screen Shot 2020-11-13 at 15.14.11.png" id="credits_iade" alt="IADE LOGO"></img>
+      </div>
+    </div>
+
+    <!-- pins on the map -->
+    <div id="Pin">
+      <div id="pin_1"></div>
+      <div id="pin_2"></div>
     </div>
     <script src="home_page.js"></script>
   </body>
