@@ -9,7 +9,7 @@ menu.onmousedown = function open_side_nav() {
   sn.style.display = "block";
 };
 
-closeMenu.onclick = function close_side_nav() {
+closeMenu.onmousedown = function close_side_nav() {
   sn.style.display = "none";
 }; // style
 

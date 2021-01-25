@@ -18,8 +18,9 @@
   --lightOrangeDarker: #ecb02e;
   --lightOrangeLighter: #f0bf65;
   --yellow: #efea5a;
-  --yellow1: #e7e36a;
-  --yellow2: #fcf882;
+  --yellow1: #e0db41;
+  --yellow2: #faf56f;
+  --green1: #16db93;
 }
 
 /* top navigation bar */
@@ -41,9 +42,17 @@ div[class^="top"] {
   text-align: center;
 }
 .Top #top_menu {
-  background-color: var(--midOrange);
+  /* background-color: var(--midOrange); */
+  background-image: url(../icon/svg/008-list.svg);
+  background-size: 40px;
+  background-repeat: no-repeat;
+  background-position: center;
   width: 70px;
-  padding-top: 15px;
+  height: 50px;
+  /* padding-top: 15px; */
+}
+.Top #top_menu:hover {
+  background-color: rgb(252, 189, 96);
 }
 .Top .top_logo {
   width: 200px;
@@ -51,6 +60,7 @@ div[class^="top"] {
 }
 .Top .top_profile {
   width: 300px;
+  /* border-bottom: 3px solid rgb(80, 80, 80); */
 }
 .profile_nickname {
   width: 200px;
@@ -60,7 +70,7 @@ div[class^="top"] {
   padding-top: 15px;
 }
 .profile_picture {
-  background-color: rgb(17, 90, 17);
+  background-color: rgb(252, 185, 99);
   width: 100px;
   height: 50px;
   float: left;
@@ -73,10 +83,16 @@ div[class^="top"] {
   float: left;
   width: 50%;
   height: 739px;
+  position: relative;
 }
 .left {
   background-color: var(--lightOrange);
   /* border-right: 5px soild black; */
+  background-image: linear-gradient(
+    to right,
+    var(--lightOrangeLighter),
+    var(--lightOrangeDarker)
+  );
 }
 .right {
   /* background-color: var(--lightOrangeLighter); */
@@ -102,11 +118,44 @@ div[class^="top"] {
   background-image: url("../image/IMG_3867.jpg");
   background-size: contain;
   background-repeat: no-repeat;
-  width: 100%;
-  height: 739px;
+  width: 95%;
+  height: 710px;
+  /* top: 50px;
+  left: 100px;
+  transform: translate(50px, 50px); */
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 25px;
 }
-.liked,
-.default {
+
+.switch {
+  position: absolute;
+  bottom: 24%;
+  right: 15%;
+  z-index: 1;
+  /* width: 200px; */
+  /* background-color: darkgoldenrod; */
+}
+
+/* .test2 {
+  position: absolute;
+  display: block;
+  height: 50px;
+  width: 50px;
+  background-color: blueviolet;
+  z-index: 1;
+  /* top: 200px;
+  left: 300px;
+}
+
+.test2:hover {
+  background-color: cornflowerblue;
+} */
+
+.like,
+.default,
+.clear {
   background-color: var(--lightOrangeDarker);
   height: 30px;
   width: 70px;
@@ -114,31 +163,38 @@ div[class^="top"] {
   border: none;
   border-radius: 20px;
   box-shadow: 0px 5px 2px rgb(163, 163, 163);
-  z-index: 1;
+  /* z-index: 1; */
   line-height: 30px;
   cursor: pointer;
+  /* right: 20px; */
 }
 
-.liked:hover,
-.default:hover {
+.like:hover,
+.default:hover,
+.clear:hover {
   background-color: var(--lightOrangeLighter);
 }
 
-.liked:active,
-.default:active {
+.like:active,
+.default:active,
+.clear:active {
   background-color: var(--lightOrangeLighter);
   box-shadow: 0px 2px 5px rgb(53, 53, 53);
   transform: translate(0px, 4px);
 }
 
-.liked {
-  top: 640px;
-  right: 20px;
+/* .clear {
+  top: 550px;
+} */
+
+.like {
+  /* top: 600px; */
+  top: 50px;
 }
 
 .default {
-  top: 690px;
-  right: 20px;
+  /* top: 650px; */
+  top: 100px;
 }
 
 /* landmark */
@@ -146,15 +202,20 @@ div[class^="top"] {
   /* background-color: var(--lightOrangeLighter); */
   height: 500px;
   position: relative;
+  /* margin-top: 15; */
+  /* margin-left: 50%; */
+  /* transform: translate(-50%, 0px); */
+  margin-top: 15px;
+  margin-left: 20px;
 }
 div[class^="landmark"] {
-  /* position: absolute; */
   text-align: center;
+}
+.justLandmark {
+  border: 1px solid white;
 }
 .landmark_image {
   position: absolute;
-  top: 10px;
-  left: 20px;
   width: 95%;
   height: 400px;
   /* background-color: rgb(113, 196, 96); */
@@ -174,12 +235,11 @@ div[class^="landmark"] {
   display: block;
 }
 .landmark_bottom {
-  /* background-color: dodgerblue; */
   display: flex;
   justify-content: space-around;
   width: 95%;
   height: 70px;
-  left: 20px;
+  /* left: 20px; */
   bottom: 15px;
   position: absolute;
 }
@@ -189,41 +249,77 @@ div[class^="landmark"] {
   /* bottom: 20px;
   left: 50px; */
   background-color: var(--yellow2);
-  border: 3px solid var(--yellow1);
+  border: 5px outset var(--yellow1);
   font-size: 30px;
   font-style: bold;
-  line-height: 64px;
+  line-height: 60px;
   text-shadow: 3px 3px 3px rgb(148, 148, 148);
+}
+
+/* #Capa_1 {
+  width: 100px;
+  height: 100px;
+  z-index: 100;
+  position: absolute;
+  top: 500px;
+  left: 500px;
+} */
+
+.heart {
+  fill: rgb(0, 0, 0);
+}
+.heart:hover {
+  fill: #d7443e;
 }
 
 .landmark_like {
   width: 70px;
-  border-radius: 30px;
+  border-radius: 10px;
   /* bottom: 10px;
   right: 150px; */
   background-color: var(--yellow);
+  background-image: url(../icon/svg/018-heart.svg);
+  background-size: contain;
   cursor: pointer;
   line-height: 64px;
   box-shadow: 3px 3px 3px rgb(139, 139, 139);
+  order: 1;
+}
+.landmark_like:hover {
+  border-radius: 27px;
 }
 .landmark_comment {
   width: 70px;
-  border-radius: 30px;
+  border-radius: 10px;
   /* bottom: 10px;
   right: 50px; */
   background-color: var(--yellow);
+  background-image: url(../icon/svg/020-comment.svg);
+  background-size: contain;
   cursor: pointer;
   line-height: 64px;
   box-shadow: 3px 3px 3px rgb(139, 139, 139);
+  order: 2;
+}
+.landmark_comment:hover {
+  background-color: rgb(212, 118, 86);
 }
 
 .landmark_test {
   width: 70px;
   background-color: var(--yellow);
-  border-radius: 30px;
+  background-image: url(../icon/svg/021-test.svg);
+  background-size: 60px;
+  background-repeat: no-repeat;
+  background-position: center;
+  border-radius: 10px;
   cursor: pointer;
   line-height: 64px;
   box-shadow: 3px 3px 3px rgb(139, 139, 139);
+  order: 3;
+}
+.landmark_test:hover {
+  border: 3px solid rgb(247, 136, 45);
 }
 
 /* unlockable */
@@ -283,9 +379,9 @@ div[class^="unlockable"] {
 
 #side_nav #close_side_nav {
   margin-top: 0;
-  background-color: #048ba8;
-  /* width: 50px;
-  float: right; */
+  height: 50px;
+  background: #048ba8 url(../icon/svg/010-undo.svg) no-repeat center;
+  background-size: 45px;
 }
 
 #side_nav #close_side_nav:hover {
@@ -332,7 +428,7 @@ div[class^="unlockable"] {
   z-index: 2;
   height: 600px;
   width: 800px;
-  background-color: var(--coralOrange);
+  background-color: var(--green1);
   border-radius: 20px;
   left: 50%;
   top: 50%;
@@ -354,10 +450,16 @@ div[class^="unlockable"] {
   right: 4px;
   width: 50px;
   height: 50px;
-  background-color: rgba(0, 0, 0, 0.425);
+  background: url(../icon/svg/close.svg) no-repeat center;
+  background-size: contain;
   border-radius: 20px;
   color: #fff;
   cursor: pointer;
+}
+.centerBox_close:hover {
+  background-color: rgb(235, 160, 135);
+  box-shadow: 2px 2px 2px grey;
+  /* border: 1px solid white; */
 }
 
 /* style  */
