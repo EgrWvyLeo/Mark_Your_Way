@@ -21,6 +21,7 @@
   --yellow1: #e0db41;
   --yellow2: #faf56f;
   --green1: #16db93;
+  --green2: #58ebb5;
 }
 
 /* top navigation bar */
@@ -351,7 +352,7 @@ div[class^="unlockable"] {
   height: 100%;
   width: 250px;
   position: fixed;
-  background-color: #16db93;
+  background-color: var(--green1);
   top: 0;
   left: 0;
   z-index: 1;
@@ -374,18 +375,19 @@ div[class^="unlockable"] {
 #side_nav a:hover {
   color: #ffffff;
   background-color: #0db39e;
-  box-shadow: 0 2px 10px grey;
+  box-shadow: 0 2px 8px grey;
+  /* border: 1px solid white; */
 }
 
 #side_nav #close_side_nav {
   margin-top: 0;
   height: 50px;
-  background: #048ba8 url(../icon/svg/010-undo.svg) no-repeat center;
+  background: #17b0d6 url(../icon/svg/010-undo.svg) no-repeat center;
   background-size: 45px;
 }
 
 #side_nav #close_side_nav:hover {
-  background-color: #2c699a;
+  background-color: #3687d3;
 }
 
 /* style */
@@ -428,7 +430,7 @@ div[class^="unlockable"] {
   z-index: 2;
   height: 600px;
   width: 800px;
-  background-color: var(--green1);
+  /* background-color: var(--green1); */
   border-radius: 20px;
   left: 50%;
   top: 50%;
@@ -436,6 +438,7 @@ div[class^="unlockable"] {
   display: none;
   border: 1px solid rgb(255, 255, 255);
   box-shadow: 5px 5px 7px grey;
+  background-image: linear-gradient(rgb(19, 186, 228), rgb(23, 224, 157));
 }
 
 .centerBox_content {
@@ -453,12 +456,11 @@ div[class^="unlockable"] {
   background: url(../icon/svg/close.svg) no-repeat center;
   background-size: contain;
   border-radius: 20px;
-  color: #fff;
   cursor: pointer;
 }
 .centerBox_close:hover {
-  background-color: rgb(235, 160, 135);
-  box-shadow: 2px 2px 2px grey;
+  background-color: #3687d3;
+  /* box-shadow: 2px 2px 2px grey; */
   /* border: 1px solid white; */
 }
 
@@ -550,7 +552,8 @@ div[id^="pin"] {
   width: 600px; */
   height: 500px;
   width: 1000px;
-  background-color: var(--coralOrange);
+  /* background-color: var(--coralOrange); */
+  background-image: linear-gradient(rgb(19, 186, 228), rgb(23, 224, 157));
   border-radius: 20px;
   left: 50%;
   top: 50%;
@@ -572,10 +575,14 @@ div[id^="pin"] {
   right: 4px;
   width: 50px;
   height: 50px;
-  background-color: rgba(0, 0, 0, 0.425);
+  /* background-color: rgba(0, 0, 0, 0.425); */
+  background: url(../icon/svg/close.svg) no-repeat center;
+  background-size: contain;
   border-radius: 20px;
-  color: #fff;
   cursor: pointer;
+}
+#test_close:hover {
+  background-color: #3687d3;
 }
 
 #question {
