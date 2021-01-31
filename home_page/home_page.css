@@ -11,18 +11,33 @@
 
 /* variable */
 :root {
+  --orange: #ff9d3b;
+  --coralOrange: rgb(212, 118, 86);
+  --midOrange: #f3b374;
+  --lightOrange: #f1c453;
+  --lightOrangeDarker: #ffb71b;
+  --lightOrangeLighter: #ffd079;
+  --yellow: #fffb24;
+  --yellow1: #e0db41;
+  --yellow2: #faf56f;
+  --yellow3: #efea5a;
+  --green1: #16db93;
+  --green2: #58ebb5;
+}
+/* :root {
   --orange: #f29e4c;
   --coralOrange: rgb(212, 118, 86);
   --midOrange: #f3b374;
   --lightOrange: #f1c453;
   --lightOrangeDarker: #ecb02e;
   --lightOrangeLighter: #f0bf65;
-  --yellow: #efea5a;
+  --yellow: #fffb24;
   --yellow1: #e0db41;
   --yellow2: #faf56f;
+  --yellow3: #efea5a;
   --green1: #16db93;
   --green2: #58ebb5;
-}
+} */
 
 /* top navigation bar */
 .Top {
@@ -239,9 +254,8 @@ div[class^="landmark"] {
   display: flex;
   justify-content: space-around;
   width: 95%;
-  height: 70px;
-  /* left: 20px; */
-  bottom: 15px;
+  height: 60px;
+  bottom: 25px;
   position: absolute;
 }
 .landmark_name {
@@ -249,12 +263,13 @@ div[class^="landmark"] {
   border-radius: 20px;
   /* bottom: 20px;
   left: 50px; */
-  background-color: var(--yellow2);
-  border: 5px outset var(--yellow1);
+  background-color: var(--yellow);
+  /* background-image: linear-gradient(to right, var(--yellow), rgb(255, 216, 45)); */
+  border: 5px outset var(--yellow3);
   font-size: 30px;
-  font-style: bold;
-  line-height: 60px;
-  text-shadow: 3px 3px 3px rgb(148, 148, 148);
+  font-style: 900;
+  line-height: 50px;
+  text-shadow: 1px 1px 1px rgb(255, 255, 255);
 }
 
 /* #Capa_1 {
@@ -274,7 +289,7 @@ div[class^="landmark"] {
 }
 
 .landmark_like {
-  width: 70px;
+  width: 60px;
   border-radius: 10px;
   /* bottom: 10px;
   right: 150px; */
@@ -290,7 +305,7 @@ div[class^="landmark"] {
   border-radius: 27px;
 }
 .landmark_comment {
-  width: 70px;
+  width: 60px;
   border-radius: 10px;
   /* bottom: 10px;
   right: 50px; */
@@ -307,7 +322,7 @@ div[class^="landmark"] {
 }
 
 .landmark_test {
-  width: 70px;
+  width: 60px;
   background-color: var(--yellow);
   background-image: url(../icon/svg/021-test.svg);
   background-size: 60px;
@@ -459,7 +474,7 @@ div[class^="unlockable"] {
   cursor: pointer;
 }
 .centerBox_close:hover {
-  background-color: #3687d3;
+  background-color: #28f5a6;
   /* box-shadow: 2px 2px 2px grey; */
   /* border: 1px solid white; */
 }
@@ -531,17 +546,26 @@ div[id^="pin"] {
   cursor: pointer;
 }
 
+div[id^="pin"]:hover {
+  /* box-shadow: 2px 2px 2px #fff; */
+  border: 4px solid white;
+}
+
+div[id^="pin"]:active {
+  border: none;
+}
+
 #pin_1 {
-  top: 680px;
-  left: 90px;
+  top: 660px;
+  left: 100px;
 }
 #pin_2 {
-  top: 710px;
-  left: 44px;
+  top: 683px;
+  left: 53px;
 }
 #pin_3 {
-  top: 530px;
-  left: 490px;
+  top: 546px;
+  left: 480px;
 }
 
 /* question and answer box  */
@@ -582,36 +606,110 @@ div[id^="pin"] {
   cursor: pointer;
 }
 #test_close:hover {
-  background-color: #3687d3;
+  background-color: #28f5a6;
 }
-
+#question_num {
+  position: absolute;
+  top: 160px;
+  left: 40px;
+  font-size: 30px;
+  font-weight: 800;
+}
+#point {
+  position: absolute;
+  top: 35px;
+  left: 40px;
+  font-size: 30px;
+  font-weight: 900;
+}
+.point_total {
+  position: absolute;
+  /* background-color: rgba(85, 221, 255, 0.541); */
+  bottom: 60px;
+  left: 375px;
+  font-size: 25px;
+  color: rgb(85, 221, 255);
+  font-weight: 700;
+  border: 3px solid rgb(85, 221, 255);
+  border-radius: 5px;
+}
+#skip {
+  position: absolute;
+  top: 36px;
+  left: 190px;
+  font-size: 25px;
+  /* color: rgb(85, 221, 255); */
+  font-weight: 500;
+  border: 3px solid rgb(85, 221, 255);
+  border-radius: 20px;
+  cursor: pointer;
+}
+#skip:hover {
+  background-color: rgba(85, 221, 255);
+}
 #question {
   position: absolute;
-  width: 480px;
+  width: 850px;
   height: 180px;
-  top: 30px;
-  left: 40%;
-  transform: translate(-50%, 0);
+  top: 160px;
+  left: 120px;
+  text-align: left;
+  /* line-height: 180px; */
+  /* left: 40%; */
+  /* transform: translate(-50%, 0); */
   font-size: 30px;
-  background-color: rgb(67, 182, 211);
-  border-radius: 20px;
-  padding-top: 50px;
+  /* background-color: rgb(67, 182, 211);
+  border-radius: 20px; */
+  /* padding-top: 50px; */
 }
-
-#A,
-#B,
-#C,
-#D {
+.Answer {
   position: absolute;
-  height: 40px;
-  font-size: 20px;
-  background-color: rgba(67, 182, 211, 0.705);
-  cursor: pointer;
-  transform: translate(-50% 0);
-  left: 15%;
+  top: 250px;
+  left: 80px;
+  height: 300px;
+  width: 900px;
+  text-align: left;
 }
-
-#A {
+.answer {
+  /* position: absolute; */
+  /* height: 40px; */
+  font-size: 20px;
+  background-color: transparent;
+  cursor: pointer;
+  /* transform: translate(-50% 0); */
+  /* left: 100px; */
+  border: none;
+  margin: 20px;
+  display: block;
+}
+.answer:hover {
+  /* border: 2px solid black; */
+  border-radius: 15px;
+  background-color: rgba(67, 182, 211, 0.705);
+}
+.result {
+  position: absolute;
+  top: 254px;
+  left: 30px;
+  height: 200px;
+  width: 80px;
+}
+.results {
+  margin: 18px;
+  width: 25px;
+  height: 25px;
+  /* background-color: var(--coralOrange); */
+  background-size: contain;
+}
+/* .result_A {
+  background-color: var(--coralOrange);
+} */
+/* .result_D {
+  background-image: url("../icon/svg/correct.svg");
+  display: block; 
+  background-image: none;
+} */
+/* #A {
   top: 250px;
 }
 #B {
@@ -622,7 +720,7 @@ div[id^="pin"] {
 }
 #D {
   top: 400px;
-}
+} */
 /* #A {
   top: 260px;
   left: 25%;

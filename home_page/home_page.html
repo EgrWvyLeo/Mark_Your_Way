@@ -4,6 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="home_page.css" />
+    <script src="home_page.js" defer></script>
     <title>home page</title>
   </head>
   <body>
@@ -31,7 +32,6 @@
         <div class="map">
         </div>
         <div class="switch">
-            <!-- <div class="test2">xxxx</div> -->
           <div class="like">Like</div>
           <div class="default">Default</div>
           <div class="clear">Clear</div>
@@ -113,16 +113,30 @@
     <div id="test_pos">
         <div id="test">
           <div id="test_close"></div>
-        <div id="question">testing 1</div>
-      <button id="A">aaaaa</button>
-      <button id="B">bbbbb</button>
-      <button id="C">ccccc</button>
-      <button id="D">ddddd</button>
+          <div id="skip">&nbsp;Skip&nbsp;</div>
+          <div id="rule"></div>
+          <div id="question_num">Q1/2</div>
+          <div id="point">3 Points</div>
+        <div id="question">Question</div>
+      <div class="Answer">
+        <button id="A" class="answer">aaaaa</button>
+      <button id="B" class="answer">bbbbb</button>
+      <button id="C" class="answer">ccccc</button>
+      <button id="D" class="answer">ddddd</button>
+      </div>
+      <div class="result">
+        <div class="result_A results"></div>
+        <div class="result_B results"></div>
+        <div class="result_C results"></div>
+        <div class="result_D results"></div>
+      </div>
         </div>
-    </div>
+      </div>
+
+      <!-- total points gained -->
+      <div class="point_total">&nbsp;Total Points: 0&nbsp;</div>
 
     
     
-    <script src="home_page.js"></script>
   </body>
 </html>
