@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="home_page.css" />
     <script src="home_page.js" defer></script>
+    <script src="home_page_test.js" defer></script>
     <title>home page</title>
   </head>
   <body>
@@ -47,16 +48,19 @@
             <!-- <div class="landmark_like"></div> -->
             <div class="landmark_comment justLandmark"></div>
             <div class="landmark_test justLandmark"></div>
-            <?xml version="1.0" encoding="iso-8859-1"?>
+            <div class="landmark_like justLandmark">
+               <?xml version="1.0" encoding="iso-8859-1"?>
 <!-- Generator: Adobe Illustrator 19.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
-<svg version="1.1" class="landmark_like justLandmark" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-	 viewBox="0 0 391.837 391.837" style="enable-background:new 0 0 391.837 391.837;" xml:space="preserve">
+<svg version="1.1" class="likeHeart" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 391.837 391.837" style=" enable-background:new 0 0 391.837 391.837;" xml:space="preserve">
 <g>
 	<path class="heart" d="M285.257,35.528c58.743,0.286,106.294,47.836,106.58,106.58
 		c0,107.624-195.918,214.204-195.918,214.204S0,248.165,0,142.108c0-58.862,47.717-106.58,106.58-106.58l0,0
 		c36.032-0.281,69.718,17.842,89.339,48.065C215.674,53.517,249.273,35.441,285.257,35.528z"/>
 </g>
 </svg>
+            </div>
+           
           </div>
         </div>
         <!-- unlockable -->
@@ -111,9 +115,16 @@
 
     <!-- testing question box -->
     <div id="test_pos">
+      <div id="test_close"></div>
+      <div id="ResultBox">
+        <div id="resultBox_questionBoard"></div>
+        <div id="resultBox_scoreBoard"></div>
+        <div id="resultBox_countdown"></div>
+      </div>
         <div id="test">
-          <div id="test_close"></div>
-          <div id="skip">&nbsp;Skip&nbsp;</div>
+          <!-- <div id="skip">&nbsp;Skip&nbsp;</div> -->
+          <div id="next">&nbsp;Next&nbsp;</div>
+          <div id="result">&nbsp;Result&nbsp;</div>
           <div id="rule"></div>
           <div id="question_num">Q1/2</div>
           <div id="point">3 Points</div>
@@ -124,12 +135,12 @@
       <button id="C" class="answer">ccccc</button>
       <button id="D" class="answer">ddddd</button>
       </div>
-      <div class="result">
+      <!-- <div class="result">
         <div class="result_A results"></div>
         <div class="result_B results"></div>
         <div class="result_C results"></div>
         <div class="result_D results"></div>
-      </div>
+      </div> -->
         </div>
       </div>
 

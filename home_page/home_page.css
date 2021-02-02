@@ -254,8 +254,8 @@ div[class^="landmark"] {
   display: flex;
   justify-content: space-around;
   width: 95%;
-  height: 60px;
-  bottom: 25px;
+  height: 50px;
+  bottom: 40px;
   position: absolute;
 }
 .landmark_name {
@@ -268,7 +268,7 @@ div[class^="landmark"] {
   border: 5px outset var(--yellow3);
   font-size: 30px;
   font-style: 900;
-  line-height: 50px;
+  line-height: 40px;
   text-shadow: 1px 1px 1px rgb(255, 255, 255);
 }
 
@@ -283,49 +283,65 @@ div[class^="landmark"] {
 
 .heart {
   fill: rgb(0, 0, 0);
+  /* width: 30px;
+  height: 30px; */
 }
-.heart:hover {
+/* .heart:hover {
   fill: #d7443e;
+} */
+/* .heartToggle {
+  fill: #d7443e;
+} */
+.likeHeart {
+  position: absolute;
+  width: 40px;
+  left: 427px;
+  top: 5px;
 }
-
 .landmark_like {
-  width: 60px;
+  width: 50px;
   border-radius: 10px;
   /* bottom: 10px;
   right: 150px; */
   background-color: var(--yellow);
-  background-image: url(../icon/svg/018-heart.svg);
-  background-size: contain;
+  /* background-image: url(../icon/svg/018-heart.svg); */
+  /* background-size: 30px;
+  background-position: center;
+  background-repeat: no-repeat; */
   cursor: pointer;
   line-height: 64px;
   box-shadow: 3px 3px 3px rgb(139, 139, 139);
   order: 1;
 }
 .landmark_like:hover {
-  border-radius: 27px;
+  /* border-radius: 27px; */
+  border: 3px solid rgb(247, 136, 45);
 }
 .landmark_comment {
-  width: 60px;
+  width: 50px;
   border-radius: 10px;
   /* bottom: 10px;
   right: 50px; */
   background-color: var(--yellow);
   background-image: url(../icon/svg/020-comment.svg);
-  background-size: contain;
+  background-size: 40px;
+  background-position: center;
+  background-repeat: no-repeat;
   cursor: pointer;
   line-height: 64px;
   box-shadow: 3px 3px 3px rgb(139, 139, 139);
   order: 2;
 }
 .landmark_comment:hover {
-  background-color: rgb(212, 118, 86);
+  /* background-color: rgb(212, 118, 86); */
+  border: 3px solid rgb(247, 136, 45);
 }
 
 .landmark_test {
-  width: 60px;
+  width: 50px;
   background-color: var(--yellow);
   background-image: url(../icon/svg/021-test.svg);
-  background-size: 60px;
+  background-size: 40px;
   background-repeat: no-repeat;
   background-position: center;
   border-radius: 10px;
@@ -587,10 +603,13 @@ div[id^="pin"]:active {
   box-shadow: 5px 5px 7px grey;
 }
 
-#test {
+/* #test {
   position: relative;
   height: 500px;
   width: 1000px;
+} */
+.clearTest {
+  display: none;
 }
 
 #test_close {
@@ -610,15 +629,15 @@ div[id^="pin"]:active {
 }
 #question_num {
   position: absolute;
-  top: 160px;
-  left: 40px;
+  top: 50px;
+  left: 50px;
   font-size: 30px;
   font-weight: 800;
 }
 #point {
   position: absolute;
-  top: 35px;
-  left: 40px;
+  top: 50px;
+  left: 150px;
   font-size: 30px;
   font-weight: 900;
 }
@@ -633,44 +652,77 @@ div[id^="pin"]:active {
   border: 3px solid rgb(85, 221, 255);
   border-radius: 5px;
 }
-#skip {
+/* #skip {
   position: absolute;
-  top: 36px;
-  left: 190px;
-  font-size: 25px;
-  /* color: rgb(85, 221, 255); */
-  font-weight: 500;
+  top: 50px;
+  left: 300px;
+  font-size: 30px;
+  font-weight: 700;
   border: 3px solid rgb(85, 221, 255);
   border-radius: 20px;
   cursor: pointer;
+  z-index: 3;
 }
 #skip:hover {
+  background-color: rgba(85, 221, 255);
+} */
+#next {
+  position: absolute;
+  top: 50px;
+  left: 350px;
+  font-size: 30px;
+  font-weight: 700;
+  border: 3px solid rgb(85, 221, 255);
+  border-radius: 20px;
+  cursor: pointer;
+  z-index: 3;
+}
+#next:hover {
+  background-color: rgba(85, 221, 255);
+}
+#result {
+  position: absolute;
+  display: none;
+  top: 50px;
+  left: 350px;
+  font-size: 30px;
+  font-weight: 700;
+  border: 3px solid rgb(85, 221, 255);
+  border-radius: 20px;
+  cursor: pointer;
+  z-index: 3;
+}
+#result:hover {
   background-color: rgba(85, 221, 255);
 }
 #question {
   position: absolute;
   width: 850px;
   height: 180px;
-  top: 160px;
-  left: 120px;
+  top: 150px;
+  left: 100px;
   text-align: left;
   /* line-height: 180px; */
   /* left: 40%; */
   /* transform: translate(-50%, 0); */
   font-size: 30px;
+  font-weight: 600;
+  /* text-shadow: 1px 1px 1px white; */
   /* background-color: rgb(67, 182, 211);
   border-radius: 20px; */
   /* padding-top: 50px; */
 }
 .Answer {
   position: absolute;
-  top: 250px;
-  left: 80px;
+  top: 240px;
+  left: 50px;
   height: 300px;
-  width: 900px;
-  text-align: left;
 }
 .answer {
+  width: 800px;
+  text-align: left;
+  padding-left: 50px;
+  border-radius: 20px;
   /* position: absolute; */
   /* height: 40px; */
   font-size: 20px;
@@ -687,9 +739,9 @@ div[id^="pin"]:active {
   border-radius: 15px;
   background-color: rgba(67, 182, 211, 0.705);
 }
-.result {
+/* .result {
   position: absolute;
-  top: 254px;
+  top: 250px;
   left: 30px;
   height: 200px;
   width: 80px;
@@ -698,9 +750,49 @@ div[id^="pin"]:active {
   margin: 18px;
   width: 25px;
   height: 25px;
-  /* background-color: var(--coralOrange); */
   background-size: contain;
+} */
+.disable {
+  pointer-events: none;
 }
+.tick {
+  background-color: rgb(93, 214, 93);
+  background-image: url("../icon/svg/correct.svg");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: left;
+}
+
+.cross {
+  background-color: rgb(224, 130, 130);
+  background-image: url("../icon/svg/wrong.svg");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: left;
+}
+
+#ResultBox {
+  width: 900px;
+  height: 450px;
+  display: none;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+}
+div[id^="resultBox"] {
+  font-size: 30px;
+  font-weight: 600;
+}
+/* #resultBox_questionBoard {
+  background-color: rgb(212, 118, 86);
+}
+#resultBox_scoreBoard {
+  background-color: rgb(87, 41, 26);
+}
+#resultBox_countdown {
+  background-color: rgb(144, 168, 35);
+} */
+
 /* .result_A {
   background-color: var(--coralOrange);
 } */
