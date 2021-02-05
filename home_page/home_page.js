@@ -73,18 +73,33 @@ credits_close.onclick = function () {
 //   };
 // }
 
+//map buttons
+var like = document.querySelector(".like");
+var clear = document.querySelector(".clear");
+var Pin = document.querySelector("#Pin");
+var clearStatus = false;
+
+clear.addEventListener("click", () => {
+  if (clearStatus == false) {
+    Pin.style.display = "none";
+    clear.innerHTML = "Show";
+    clearStatus = true;
+  } else {
+    Pin.style.display = "block";
+    clear.innerHTML = "Hide";
+    clearStatus = false;
+  }
+});
+
 //some interaction of landmark btn with icons
-var landmark_like = document.querySelector(".landmark_like");
 var heart = document.querySelector(".heart");
 
-landmark_like.addEventListener("mouseover", function () {
-  heart.style.fill = "#d7443e";
-  // heart.classList.toggle("heartToggle");
-});
-landmark_like.addEventListener("mouseout", function () {
-  heart.style.fill = "black";
-  // heart.classList.toggle("heartToggle");
-});
+// landmark_like.addEventListener("mouseover", function () {
+//   heart.style.fill = "#d7443e";
+// });
+// landmark_like.addEventListener("mouseout", function () {
+//   heart.style.fill = "black";
+// });
 
 // landmarks pin and testing interaction
 var pin_1 = document.querySelector("#pin_1");
@@ -93,6 +108,7 @@ var pin_3 = document.querySelector("#pin_3");
 var landmark_image = document.querySelector(".landmark_image");
 var lisbon = document.querySelector(".landmark_image p");
 var landmark_name = document.querySelector(".landmark_name");
+var landmark_like = document.querySelector(".landmark_like");
 var landmark_test = document.querySelector(".landmark_test");
 var test_pos = document.querySelector("#test_pos");
 var test = document.querySelector("#test");
@@ -110,18 +126,23 @@ var answer = document.querySelectorAll(".answer");
 // var results = document.querySelectorAll(".results");
 // var skip = document.querySelector("#skip");
 var next = document.querySelector("#next");
-var result = document.querySelector("#result");
 var point = document.querySelector("#point");
 var point_total = document.querySelector(".point_total");
+var question_num = document.querySelector("#question_num");
+
+//define values;
 var score = 0;
 var bool = true;
 var setTime = null;
-var question_num = document.querySelector("#question_num");
 var question_num_initial = 1;
 var count = 0;
 var questionPass = 0;
 var scoreEachLandmark = 0;
+var bool1;
+var landmarkCount;
 
+//define result button and content
+var result = document.querySelector("#result");
 var ResultBox = document.querySelector("#ResultBox");
 var resultBox_questionBoard = document.querySelector(
   "#resultBox_questionBoard"
@@ -151,277 +172,156 @@ function showTest(index1, index2, totalQ) {
   D.innerHTML = allTest[index1][index2].options[3];
 }
 
+//landmark test button
+landmark_test.addEventListener("click", landmarkTestFunction);
+function landmarkTestFunction() {
+  //link with countdown timer interaction
+  bool1 = true;
+  //again removing these things
+  for (let i = 0; i < answer.length; i++) {
+    answer[i].classList.remove("disable", "tick", "cross");
+  }
+  //show the content of question
+  test.classList.remove("clearTest");
+  ResultBox.style.display = "none";
+  //show the testing box
+  test_pos.style.display = "block";
+  //show what is the first question appear on the box
+  showTest(landmarkCount, count, totalQuestion[landmarkCount]);
+}
+
+// next button
+next.addEventListener("click", function () {
+  //show the next question each time when clicking the next button
+  count++;
+  showTest(landmarkCount, count, totalQuestion[landmarkCount]);
+  //removing these things whenever user in the next question
+  for (let i = 0; i < answer.length; i++) {
+    answer[i].classList.remove("disable", "tick", "cross");
+  }
+  //set up when the result button replace the next button
+  if (count == totalQuestion[landmarkCount] - 1) {
+    result.style.display = "block";
+    next.style.display = "none";
+  }
+});
+
+//result button
+result.addEventListener("click", function () {
+  //clearing the question content
+  test.classList.add("clearTest");
+  //display result content
+  ResultBox.style.display = "flex";
+  resultBox_questionBoard.innerHTML =
+    "You get " +
+    questionPass +
+    " questions correct out of total " +
+    totalQuestion[landmarkCount] +
+    " questions";
+  resultBox_scoreBoard.innerHTML =
+    "You get total " + scoreEachLandmark + " points";
+});
+
+// get the user score if he successfully get the correct answer
+for (let i = 0; i < answer.length; i++) {
+  answer[i].addEventListener("click", function () {
+    //once select an answer, disable the landmark test button
+    landmark_test.removeEventListener("click", landmarkTestFunction);
+
+    //set up disableing timer count down
+    if (bool1 == true) {
+      second = 3;
+      minute = 1;
+      hour = 1;
+      var timer = setInterval(countdownTimer, 1000);
+      bool1 = false;
+    }
+
+    // setTimeout(function () {
+    //   resultBox_countdown.innerHTML = "Next trial unlock";
+    //   clearInterval(timer);
+    //   landmark_test.addEventListener("click", landmarkTestFunction);
+    // }, 10000);
+    //get user answer and compare it with the correct answer
+
+    let userSelect = this.innerHTML;
+    let correctAnswer = allTest[landmarkCount][count].answer;
+    if (userSelect == correctAnswer) {
+      //add all the points together
+      score = score + allTest[landmarkCount][count].point;
+      //get total points just for this landmark
+      scoreEachLandmark =
+        scoreEachLandmark + allTest[landmarkCount][count].point;
+      //get how many questions has passed
+      questionPass++;
+      //display all the points user has gained
+      point_total.innerHTML = "&nbsp;Total Points:&nbsp;" + score + "&nbsp;";
+      //add correct sign
+      this.classList.add("tick");
+      //removing available points from this question
+      allTest[landmarkCount][count].point = 0;
+    } else {
+      //add wrong sign
+      this.classList.add("cross");
+    }
+    //add disable thing so user won't able to click or select multiple answers
+    for (let j = 0; j < answer.length; j++) {
+      answer[j].classList.add("disable");
+    }
+  });
+}
+
+var second = 3;
+var minute = 1;
+var hour = 1;
+
+function countdownTimer() {
+  if (second <= 0) {
+    if (minute <= 0) {
+      if (hour <= 0) {
+        resultBox_countdown.innerHTML = "Your Next trial has unlocked";
+        landmark_test.addEventListener("click", landmarkTestFunction);
+        clearInterval(timer);
+      }
+      minute = 2;
+      hour--;
+    }
+    second = 3;
+    minute--;
+  }
+  second--;
+  resultBox_countdown.innerHTML =
+    "Your next trial will be unlocked in " +
+    hour +
+    "h: " +
+    minute +
+    "m: " +
+    second +
+    "s";
+}
+
+//ladnmark 1
 pin_1.onclick = function () {
   landmark_image.style.backgroundImage =
     "url('../image/landmarks/Jerónimos_April_2009-4.jpg')";
   landmark_image.style.backgroundPosition = "-300px -100px";
   lisbon.style.display = "none";
   landmark_name.innerHTML = "Mosteiro dos Jerónimos";
-  let landmarkCount = 0;
+  landmarkCount = 0;
 
-  landmark_test.addEventListener("click", landmarkTestFunction);
-  function landmarkTestFunction() {
-    for (let i = 0; i < answer.length; i++) {
-      answer[i].classList.remove("tick", "cross");
+  //landmark like button
+  var likeIt = false;
+  landmark_like.addEventListener("click", function () {
+    if (likeIt == false) {
+      heart.style.fill = "#d7443e";
+      likeIt = true;
+      allTest[landmarkCount][0].like = true;
+    } else {
+      heart.style.fill = "black";
+      likeIt = false;
     }
-    test.classList.remove("clearTest");
-    ResultBox.style.display = "none";
-    test_pos.style.display = "block";
-    showTest(landmarkCount, count, totalQuestion[landmarkCount]);
-  }
-
-  // set interaction when clicking the next button
-  next.addEventListener("click", function () {
-    count++;
-    showTest(landmarkCount, count, totalQuestion[landmarkCount]);
-    for (let i = 0; i < answer.length; i++) {
-      answer[i].classList.remove("disable", "tick", "cross");
-    }
-    if (count == totalQuestion[landmarkCount] - 1) {
-      result.style.display = "block";
-      // skip.style.display = "none";
-      next.style.display = "none";
-    }
-    // if (allTest[0][2].num == totalQuestion[0]) {
-    //   result.style.display = "block";
-    // }
   });
-
-  //make interaction of skip button
-  // skip.addEventListener("click", function () {
-  //   count++;
-  //   showTest(landmarkCount, count, totalQuestion[landmarkCount]);
-  //   if (count == totalQuestion[landmarkCount] - 1) {
-  //     result.style.display = "block";
-  //     skip.style.display = "none";
-  //     next.style.display = "none";
-  //   }
-  // });
-
-  //add result interaction
-  result.addEventListener("click", function () {
-    test.classList.add("clearTest");
-    ResultBox.style.display = "flex";
-    resultBox_questionBoard.innerHTML =
-      "You get " +
-      questionPass +
-      " questions correct out of total " +
-      totalQuestion[landmarkCount] +
-      " questions";
-    resultBox_scoreBoard.innerHTML =
-      "You get total " + scoreEachLandmark + " points";
-  });
-
-  var timer = 100000;
-  var timerCounter = 0;
-  var days = Math.floor((timer - timerCounter) / (1000 * 60 * 60 * 24));
-  var hours = Math.floor((timer % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-  var minutes = Math.floor(
-    ((timer - timerCounter) % (1000 * 60 * 60)) / (1000 * 60)
-  );
-  var seconds = Math.floor(((timer - timerCounter) % (1000 * 60)) / 1000);
-
-  setInterval(() => {
-    resultBox_countdown.innerHTML =
-      days + "d " + hours + "h " + minutes + "m " + seconds + "s ";
-    // timer -= 1000;
-    timerCounter += 1000;
-  }, 1000);
-
-  // get the user score if he successfully get the correct answer
-  for (let i = 0; i < answer.length; i++) {
-    answer[i].addEventListener("click", function () {
-      landmark_test.removeEventListener("click", landmarkTestFunction);
-      setTimeout(function () {
-        landmark_test.addEventListener("click", landmarkTestFunction);
-      }, timer);
-      let userSelect = this.innerHTML;
-      let correctAnswer = allTest[landmarkCount][count].answer;
-      if (userSelect == correctAnswer) {
-        score = score + allTest[landmarkCount][count].point;
-        scoreEachLandmark =
-          scoreEachLandmark + allTest[landmarkCount][count].point;
-        questionPass++;
-        point_total.innerHTML = "&nbsp;Total Points:&nbsp;" + score + "&nbsp;";
-        this.classList.add("tick");
-        allTest[landmarkCount][count].point = 0;
-      } else {
-        this.classList.add("cross");
-      }
-      for (let j = 0; j < answer.length; j++) {
-        answer[j].classList.add("disable");
-      }
-    });
-  }
-
-  // disable all the event when user click an answer
-  // for (let i = 0; i < answer.length; i++) {
-
-  // }
-
-  // landmark_test.onclick = function () {
-  //   question_num.innerHTML = "Q" + question_num_initial + "/3";
-  //   question.innerHTML = "What stands between Jeronimos and the river?";
-  //   A.innerHTML = "A: A parking lot.";
-  //   B.innerHTML = "B: A museum.";
-  //   C.innerHTML = "C: A restaurant.";
-  //   D.innerHTML = "D: A garden.";
-  //   test_pos.style.display = "block";
-
-  //   A.addEventListener("click", clickA);
-  //   B.addEventListener("click", clickB);
-  //   C.addEventListener("click", clickC);
-  //   D.addEventListener("click", clickD);
-  //   function clickA() {
-  //     result_A.style.backgroundImage = "url('../icon/svg/wrong.svg')";
-  //   }
-  //   function clickB() {
-  //     result_B.style.backgroundImage = "url('../icon/svg/wrong.svg')";
-  //   }
-  //   function clickC() {
-  //     result_C.style.backgroundImage = "url('../icon/svg/wrong.svg')";
-  //   }
-  //   function clickD() {
-  //     result_D.style.backgroundImage = "url('../icon/svg/correct.svg')";
-  //     score = score + 3;
-  //     point_total.innerHTML = "&nbsp;Total Points:&nbsp;" + score + "&nbsp;";
-  //   }
-  //   for (let i = 0; i < answer.length; i++) {
-  //     answer[i].addEventListener("click", clickGeneral);
-  //     function clickGeneral() {
-  //       A.removeEventListener("click", clickA);
-  //       B.removeEventListener("click", clickB);
-  //       C.removeEventListener("click", clickC);
-  //       D.removeEventListener("click", clickD);
-  //     }
-  //   }
-
-  //   for (let i = 0; i < answer.length; i++) {
-  //     answer[i].addEventListener("click", setQuestion2);
-  //     function setQuestion2() {
-  //       clearTimeout(setTime);
-  //       setTime = setTimeout(function () {
-  //         question_num_initial++;
-  //         question_num.innerHTML = "Q" + question_num_initial + "/3";
-  //         question.innerHTML =
-  //           "What type of architecture is Jeronimos built in?";
-  //         A.innerHTML = "A: Roman.";
-  //         B.innerHTML = "B: Baroc.";
-  //         C.innerHTML = "C: Gothic.";
-  //         D.innerHTML = "D: Byzantine.";
-  //         for (let i = 0; i < results.length; i++) {
-  //           results[i].style.backgroundImage = "none";
-  //         }
-
-  //         A.addEventListener("click", clickA2);
-  //         B.addEventListener("click", clickB2);
-  //         C.addEventListener("click", clickC2);
-  //         D.addEventListener("click", clickD2);
-  //         function clickA2() {
-  //           result_A.style.backgroundImage = "url('../icon/svg/wrong.svg')";
-  //         }
-  //         function clickB2() {
-  //           result_B.style.backgroundImage = "url('../icon/svg/wrong.svg')";
-  //         }
-  //         function clickC2() {
-  //           result_C.style.backgroundImage = "url('../icon/svg/correct.svg')";
-  //           score = score + 3;
-  //           point_total.innerHTML =
-  //             "&nbsp;Total Points:&nbsp;" + score + "&nbsp;";
-  //         }
-  //         function clickD2() {
-  //           result_D.style.backgroundImage = "url('../icon/svg/wrong.svg')";
-  //         }
-  //         for (let i = 0; i < answer.length; i++) {
-  //           answer[i].addEventListener("click", clickGeneral2);
-  //           function clickGeneral2() {
-  //             A.removeEventListener("click", clickA2);
-  //             B.removeEventListener("click", clickB2);
-  //             C.removeEventListener("click", clickC2);
-  //             D.removeEventListener("click", clickD2);
-  //           }
-  //         }
-  //       }, 3000);
-  //     }
-  //   }
-
-  //   for (let i = 0; i < answer.length; i++) {
-  //     answer[i].addEventListener("click", setQuestion3);
-  //     function setQuestion3() {
-  //       clearTimeout(setTime);
-  //       setTime = setTimeout(function () {
-  //         question_num_initial++;
-  //         question_num.innerHTML = "Q" + question_num_initial + "/3";
-  //         question.innerHTML = "What type of landmark is Jeronimos?";
-  //         A.innerHTML = "A: Museum.";
-  //         B.innerHTML = "B: Monastery.";
-  //         C.innerHTML = "C: Statue.";
-  //         D.innerHTML = "D: Church.";
-  //         for (let i = 0; i < results.length; i++) {
-  //           results[i].style.backgroundImage = "none";
-  //         }
-
-  //         A.addEventListener("click", clickA3);
-  //         B.addEventListener("click", clickB3);
-  //         C.addEventListener("click", clickC3);
-  //         D.addEventListener("click", clickD3);
-  //         function clickA3() {
-  //           result_A.style.backgroundImage = "url('../icon/svg/wrong.svg')";
-  //         }
-  //         function clickB3() {
-  //           result_B.style.backgroundImage = "url('../icon/svg/correct.svg')";
-  //           score = score + 3;
-  //           point_total.innerHTML =
-  //             "&nbsp;Total Points:&nbsp;" + score + "&nbsp;";
-  //         }
-  //         function clickC3() {
-  //           result_C.style.backgroundImage = "url('../icon/svg/wrong.svg')";
-  //         }
-  //         function clickD3() {
-  //           result_D.style.backgroundImage = "url('../icon/svg/wrong.svg')";
-  //         }
-  //         for (let i = 0; i < answer.length; i++) {
-  //           answer[i].addEventListener("click", clickGeneral3);
-  //           function clickGeneral3() {
-  //             A.removeEventListener("click", clickA3);
-  //             B.removeEventListener("click", clickB3);
-  //             C.removeEventListener("click", clickC3);
-  //             D.removeEventListener("click", clickD3);
-  //           }
-  //         }
-  //       }, 3000);
-  //     }
-  //   }
-  // };
 };
-
-// result_A.style.backgroundImage = "url('../icon/svg/wrong.svg')";
-// result_B.style.backgroundImage = "url('../icon/svg/wrong.svg')";
-// result_C.style.backgroundImage = "url('../icon/svg/wrong.svg')";
-// result_D.style.backgroundImage = "url('../icon/svg/correct.svg')";
-
-// if (bool == true) {
-//   D.addEventListener("click", function () {
-//     score = score + 3;
-//     point_total.innerHTML = "&nbsp;Total Points:&nbsp;" + score + "&nbsp;";
-//     return (bool = false);
-//   });
-// }
-
-// D.onclick = function () {
-//   score = score + 3;
-//   point_total.innerHTML = "&nbsp;Total Points:&nbsp;" + score + "&nbsp;";
-// };
-// answer.onclick = setTimeout(function () {
-//   question.innerHTML = "What type of architecture is Jeronimos built in?";
-//   A.innerHTML = "A: Roman.";
-//   B.innerHTML = "B: Baroc.";
-//   C.innerHTML = "C: Gothic.";
-//   D.innerHTML = "D: Byzantine.";
-// }, 5000);
-// D.addEventListener("click", function () {
-//   result_D.style.backgroundImage = "url('../icon/svg/correct.svg')";
-// });
 
 pin_2.onclick = function () {
   landmark_image.style.backgroundImage =
@@ -430,41 +330,7 @@ pin_2.onclick = function () {
   lisbon.style.display = "none";
   landmark_name.innerHTML = "Torre de Belém";
   // landmark_image.style.backgroundSize = "900px";
-  landmark_test.onclick = function () {
-    question.innerHTML = "What was this landmarks' originally built for?";
-    A.innerHTML = "A: It was originally intended to be a defensive stronghold.	";
-    B.innerHTML = "B: A prison to lisbon's most notorious criminals.	";
-    C.innerHTML =
-      "C: Point of embarkation and disembarkment for portuguese explorers.	";
-    D.innerHTML = "D: One of the king's private places.";
-    // test_pos.style.width = "1000px";
-    test_pos.style.display = "block";
-    for (let i = 0; i < answer.length; i++) {
-      // const element = array[i];
-      answer[i].addEventListener("click", function () {
-        setTimeout(function () {
-          question.innerHTML =
-            "What type of architecture is Torre de Belém built in?";
-          A.innerHTML = "A: Roman.";
-          B.innerHTML = "B: Baroc.";
-          C.innerHTML = "C: Gothic.";
-          D.innerHTML = "D: Byzantine.";
-        }, 3000);
-      });
-    }
-    A.onclick = function () {
-      result_A.style.backgroundImage = "url('../icon/svg/wrong.svg')";
-    };
-    B.onclick = function () {
-      result_B.style.backgroundImage = "url('../icon/svg/wrong.svg')";
-    };
-    C.onclick = function () {
-      result_C.style.backgroundImage = "url('../icon/svg/correct.svg')";
-    };
-    D.onclick = function () {
-      result_D.style.backgroundImage = "url('../icon/svg/wrong.svg')";
-    };
-  };
+  landmarkCount = 1;
 };
 
 pin_3.onclick = function () {

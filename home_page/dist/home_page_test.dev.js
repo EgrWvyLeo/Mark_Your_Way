@@ -5,19 +5,22 @@ var allTest = [[{
   point: 3,
   question: "What stands between Jeronimos and the river?",
   options: ["A: A parking lot.", "B: A museum.", "C: A restaurant.", "D: A garden."],
-  answer: "D: A garden."
+  answer: "D: A garden.",
+  like: false
 }, {
   num: "Q2",
   point: 4,
   question: "What type of architecture is Jeronimos built in?",
   options: ["A: Roman.", "B: Baroc.", "C: Gothic.", "D: Byzantine."],
-  answer: "C: Gothic."
+  answer: "C: Gothic.",
+  like: false
 }, {
   num: "Q3",
   point: 5,
   question: "What type of landmark is Jeronimos?",
   options: ["A: Museum.", "B: Monastery.", "C: Statue.", "D: Church."],
-  answer: "B: Monastery."
+  answer: "B: Monastery.",
+  like: false
 }], [{
   num: "Q1",
   point: 3,

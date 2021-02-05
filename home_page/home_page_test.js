@@ -11,6 +11,7 @@ var allTest = [
         "D: A garden.",
       ],
       answer: "D: A garden.",
+      like: false,
     },
     {
       num: "Q2",
@@ -18,6 +19,7 @@ var allTest = [
       question: "What type of architecture is Jeronimos built in?",
       options: ["A: Roman.", "B: Baroc.", "C: Gothic.", "D: Byzantine."],
       answer: "C: Gothic.",
+      like: false,
     },
     {
       num: "Q3",
@@ -25,6 +27,7 @@ var allTest = [
       question: "What type of landmark is Jeronimos?",
       options: ["A: Museum.", "B: Monastery.", "C: Statue.", "D: Church."],
       answer: "B: Monastery.",
+      like: false,
     },
   ],
   [
