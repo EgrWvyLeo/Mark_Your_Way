@@ -11,6 +11,7 @@ var allTest = [
         "D: A garden.",
       ],
       answer: "D: A garden.",
+      like: false,
     },
     {
       num: "Q2",
@@ -41,6 +42,7 @@ var allTest = [
       ],
       answer:
         "C: Point of embarkation and disembarkment for portuguese explorers.",
+      like: false,
     },
     {
       num: "Q2",

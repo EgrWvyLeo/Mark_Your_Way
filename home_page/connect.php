@@ -1,3 +1,4 @@
+<?php
 $sn = 'localhost';
   $db = 'mark_your_way';
   $un = 'root'; 
@@ -5,4 +6,5 @@ $sn = 'localhost';
 
   $conn = new mysqli($sn, $un, $pw, $db);
   if ($conn->connect_error) die("Fatal Error");
+  ?>
 

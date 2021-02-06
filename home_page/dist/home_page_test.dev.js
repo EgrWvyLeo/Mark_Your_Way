@@ -5,7 +5,8 @@ var allTest = [[{
   point: 3,
   question: "What stands between Jeronimos and the river?",
   options: ["A: A parking lot.", "B: A museum.", "C: A restaurant.", "D: A garden."],
-  answer: "D: A garden."
+  answer: "D: A garden.",
+  like: false
 }, {
   num: "Q2",
   point: 4,
@@ -23,7 +24,8 @@ var allTest = [[{
   point: 3,
   question: "What was this landmarks' originally built for?",
   options: ["A: It was originally intended to be a defensivestronghold.", "B: A prison to lisbon's most notorious criminals.", "C: Point of embarkation and disembarkment for portuguese explorers.", "D: One of the king's private places."],
-  answer: "C: Point of embarkation and disembarkment for portuguese explorers."
+  answer: "C: Point of embarkation and disembarkment for portuguese explorers.",
+  like: false
 }, {
   num: "Q2",
   point: 5,

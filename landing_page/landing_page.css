@@ -20,17 +20,22 @@ body {
     Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
 }
 
+<<<<<<< HEAD
 .webInfo1{
   margin-top: 100px;
+=======
+.webInfo1 {
+  margin-top: 200px;
+>>>>>>> 80121ccfc862f11d4d5d8c4aa5ee374dd61880cd
   margin-left: 200px;
   margin-right: 200px;
-  font-align: center;
+  text-align: center;
   font-size: 15px;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
     Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
 }
 
-.webInfo2{
+.webInfo2 {
   margin-top: 200px;
   margin-left: 200px;
   margin-right: 200px;
