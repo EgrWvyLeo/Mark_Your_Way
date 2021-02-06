@@ -70,6 +70,38 @@ div[class^="top"] {
 .Top #top_menu:hover {
   background-color: rgb(252, 189, 96);
 }
+.pointDaily {
+  display: none;
+  font-size: 20px;
+  font-weight: 700;
+  padding-top: 12px;
+  z-index: 1;
+  width: 320px;
+  height: 50px;
+  /* background-color: red; */
+  margin-left: -200px;
+  border-radius: 20px;
+  /* border: 3px solid black; */
+}
+.pointDaily:hover {
+  border-bottom: 3px solid black;
+}
+.getPointDaily {
+  margin-top: 5px;
+  height: 40px;
+  width: 200px;
+  font-size: 20px;
+  font-weight: 700;
+  margin-left: -200px;
+  background-color: rgb(255, 123, 75);
+  border: none;
+  cursor: pointer;
+  border-radius: 20px;
+}
+.getPointDaily:hover {
+  color: white;
+  background-color: rgb(255, 111, 59);
+}
 .Top .top_logo {
   width: 200px;
   padding-top: 10px;
@@ -265,7 +297,7 @@ div[class^="landmark"] {
   position: absolute;
 }
 .landmark_name {
-  width: 55%;
+  width: 70%;
   border-radius: 20px;
   /* bottom: 20px;
   left: 50px; */
@@ -302,7 +334,7 @@ div[class^="landmark"] {
 .likeHeart {
   position: absolute;
   width: 40px;
-  left: 427px;
+  left: 520px;
   top: 5px;
 }
 .landmark_like {
@@ -359,6 +391,20 @@ div[class^="landmark"] {
 }
 .landmark_test:hover {
   border: 3px solid rgb(247, 136, 45);
+}
+
+/* landmark description */
+.landmarkDescription {
+  position: absolute;
+  top: 486px;
+  right: 30px;
+  width: 663px;
+  height: 235px;
+  background-color: var(--yellow3);
+  border-radius: 30px;
+  font-size: 20px;
+  font-weight: 600;
+  text-align: left;
 }
 
 /* unlockable */

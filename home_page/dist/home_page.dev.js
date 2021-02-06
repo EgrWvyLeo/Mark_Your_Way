@@ -111,14 +111,7 @@ clear.addEventListener("click", function () {
     clear.innerHTML = "Hide";
     clearStatus = false;
   }
-}); //some interaction of landmark btn with icons
-// landmark_like.addEventListener("mouseover", function () {
-//   heart.style.fill = "#d7443e";
-// });
-// landmark_like.addEventListener("mouseout", function () {
-//   heart.style.fill = "black";
-// });
-// landmarks pin and testing interaction
+}); // landmarks pin and testing interaction
 
 var pin_1 = document.querySelector("#pin_1");
 var pin_2 = document.querySelector("#pin_2");
@@ -136,13 +129,7 @@ var A = document.querySelector("#A");
 var B = document.querySelector("#B");
 var C = document.querySelector("#C");
 var D = document.querySelector("#D");
-var answer = document.querySelectorAll(".answer"); // var result_A = document.querySelector(".result_A");
-// var result_B = document.querySelector(".result_B");
-// var result_C = document.querySelector(".result_C");
-// var result_D = document.querySelector(".result_D");
-// var results = document.querySelectorAll(".results");
-// var skip = document.querySelector("#skip");
-
+var answer = document.querySelectorAll(".answer");
 var next = document.querySelector("#next");
 var point = document.querySelector("#point");
 var point_total = document.querySelector(".point_total");
@@ -165,6 +152,23 @@ var resultBox_scoreBoard = document.querySelector("#resultBox_scoreBoard");
 var resultBox_countdown = document.querySelector("#resultBox_countdown"); //close button
 
 test_close.onclick = function () {
+  if (allTest[landmarkCount][0].point == 0 && allTest[landmarkCount][1].point == 0 // allTest[landmarkCount][2].point == 0
+  ) {
+      landmarkDescription.innerHTML = allTest[landmarkCount][0].description;
+    }
+
+  if (pointReduce == true) {
+    pointReduce = false;
+
+    for (var i = 0; i < allTest[landmarkCount].length; i++) {
+      allTest[landmarkCount][i].point -= 1;
+
+      if (allTest[landmarkCount][i].point < 0) {
+        allTest[landmarkCount][i].point = 0;
+      }
+    }
+  }
+
   test_pos.style.display = "none";
   count = 0;
   result.style.display = "none"; // skip.style.display = "block";
@@ -172,7 +176,12 @@ test_close.onclick = function () {
   next.style.display = "block";
   scoreEachLandmark = 0;
   questionPass = 0;
-}; // get all the tests from array
+}; // for (let i = 0; i < allTest[landmarkCount].length; i++) {
+//   if (allTest[landmarkCount][i].point < 0) {
+//     allTest[landmarkCount][i].point = 0;
+//   }
+// }
+// get all the tests from array
 
 
 function showTest(index1, index2, totalQ) {
@@ -183,8 +192,10 @@ function showTest(index1, index2, totalQ) {
   B.innerHTML = allTest[index1][index2].options[1];
   C.innerHTML = allTest[index1][index2].options[2];
   D.innerHTML = allTest[index1][index2].options[3];
-} //landmark test button function
+} //landmark test button
 
+
+landmark_test.addEventListener("click", landmarkTestFunction);
 
 function landmarkTestFunction() {
   //link with countdown timer interaction
@@ -227,23 +238,21 @@ result.addEventListener("click", function () {
 
   ResultBox.style.display = "flex";
   resultBox_questionBoard.innerHTML = "You get " + questionPass + " questions correct out of total " + totalQuestion[landmarkCount] + " questions";
-  resultBox_scoreBoard.innerHTML = "You get total " + scoreEachLandmark + " points";
+  resultBox_scoreBoard.innerHTML = "You get total " + scoreEachLandmark + " points for this landmark";
 }); // get the user score if he successfully get the correct answer
+
+var pointReduce = false;
 
 for (var i = 0; i < answer.length; i++) {
   answer[i].addEventListener("click", function () {
-    // setTimeout(function () {
-    //   resultBox_countdown.innerHTML = "Next trial unlock";
-    //   clearInterval(timer);
-    //   landmark_test.addEventListener("click", landmarkTestFunction);
-    // }, 10000);
-    //get user answer and compare it with the correct answer
+    pointReduce = true; //get user answer and compare it with the correct answer
+
     var userSelect = this.innerHTML;
     var correctAnswer = allTest[landmarkCount][count].answer;
 
     if (userSelect == correctAnswer) {
       //add all the points together
-      score = score + allTest[landmarkCount][count].point; //get total points just for this landmark
+      score += allTest[landmarkCount][count].point; //get total points just for this landmark
 
       scoreEachLandmark = scoreEachLandmark + allTest[landmarkCount][count].point; //get how many questions has passed
 
@@ -264,46 +273,49 @@ for (var i = 0; i < answer.length; i++) {
       answer[j].classList.add("disable");
     }
   });
-}
+} //set up daily timer
 
-var second = 3;
-var minute = 1;
-var hour = 1;
+
+var second = 60;
+var minute = 59;
+var hour = 23;
 var timer;
+var pointDaily = document.querySelector(".pointDaily");
+var getPointDaily = document.querySelector(".getPointDaily"); // var pointDailyRandom = Math.floor(Math.random() * 10 + 1);
+// getPointDaily.innerHTML = "Grab " + pointDailyRandom + " points";
+
+getPointDaily.addEventListener("click", function () {
+  second = 60;
+  minute = 59;
+  hour = 23;
+  score += Math.floor(Math.random() * 10 + 1);
+  point_total.innerHTML = "&nbsp;Total Points:&nbsp;" + score + "&nbsp;";
+  timer = setInterval(countdownTimer, 1000);
+  getPointDaily.style.display = "none";
+  pointDaily.style.display = "block";
+});
+pointDaily.innerHTML = "Grab next points in " + hour + "h: " + minute + "m: " + second + "s";
 
 function countdownTimer() {
+  pointDaily.innerHTML = "Grab next points in " + hour + "h: " + minute + "m: " + second + "s";
+
   if (second <= 0) {
     if (minute <= 0) {
       if (hour <= 0) {
-        resultBox_countdown.innerHTML = "Your Next trial has unlocked";
-        landmark_test.addEventListener("click", landmarkTestFunction);
+        pointDaily.style.display = "none";
+        getPointDaily.style.display = "block";
         return clearInterval(timer);
       }
 
-      minute = 2;
+      minute = 60;
       hour--;
     }
 
-    second = 3;
+    second = 60;
     minute--;
   }
 
   second--;
-  resultBox_countdown.innerHTML = "Your next trial will be unlocked in " + hour + "h: " + minute + "m: " + second + "s";
-} //timer function
-
-
-function timerLink() {
-  //once select an answer, disable the landmark test button
-  landmark_test.removeEventListener("click", landmarkTestFunction); //set up disableing timer count down
-
-  if (bool1 == true) {
-    second = 3;
-    minute = 1;
-    hour = 1;
-    timer = setInterval(countdownTimer, 1000);
-    bool1 = false;
-  }
 } //landmark like button
 
 
@@ -319,7 +331,8 @@ landmark_like.addEventListener("click", function () {
     likeIt = false;
     allTest[landmarkCount][0].like = false;
   }
-}); //landnmarks
+});
+var landmarkDescription = document.querySelector(".landmarkDescription"); //landnmarks
 
 pin_1.addEventListener("click", function () {
   landmark_image.style.backgroundImage = "url('../image/landmarks/Jerónimos_April_2009-4.jpg')";
@@ -327,10 +340,11 @@ pin_1.addEventListener("click", function () {
   lisbon.style.display = "none";
   landmark_name.innerHTML = "Mosteiro dos Jerónimos";
   landmarkCount = 0;
-  landmark_test.addEventListener("click", landmarkTestFunction);
 
-  for (var _i = 0; _i < answer.length; _i++) {
-    answer[_i].addEventListener("click", timerLink);
+  if (allTest[landmarkCount][0].point == 0 && allTest[landmarkCount][1].point == 0 && allTest[landmarkCount][2].point == 0) {
+    landmarkDescription.innerHTML = allTest[landmarkCount][0].description;
+  } else {
+    landmarkDescription.innerHTML = "Get all the questions correct to unlock this landmark description";
   }
 });
 pin_2.addEventListener("click", function () {
@@ -340,15 +354,31 @@ pin_2.addEventListener("click", function () {
   landmark_name.innerHTML = "Torre de Belém"; // landmark_image.style.backgroundSize = "900px";
 
   landmarkCount = 1;
-  landmark_test.addEventListener("click", landmarkTestFunction);
 
-  for (var _i2 = 0; _i2 < answer.length; _i2++) {
-    answer[_i2].addEventListener("click", timerLink);
+  if (allTest[landmarkCount][0].point == 0 && allTest[landmarkCount][1].point == 0 && allTest[landmarkCount][2].point == 0) {
+    landmarkDescription.innerHTML = allTest[landmarkCount][0].description;
+  } else {
+    landmarkDescription.innerHTML = "Get all the questions correct to unlock this landmark description";
   }
-}); //reset the landmark like button each time switching to a new landmark, and then reconsider if
+});
 
-for (var _i3 = 0; _i3 < pin.length; _i3++) {
-  pin[_i3].addEventListener("click", function () {
+pin_3.onclick = function () {
+  landmark_image.style.backgroundImage = "url('../image/landmarks/engenhos-da-calheta-madeira-2.jpg";
+  landmark_image.style.backgroundPosition = "-100px -130px";
+  lisbon.style.display = "none";
+  landmark_name.innerHTML = "Castelo São Jorge";
+  landmarkCount = 2;
+
+  if (allTest[landmarkCount][0].point == 0 && allTest[landmarkCount][1].point == 0 && allTest[landmarkCount][2].point == 0) {
+    landmarkDescription.innerHTML = allTest[landmarkCount][0].description;
+  } else {
+    landmarkDescription.innerHTML = "Get all the questions correct to unlock this landmark description";
+  }
+}; //reset the landmark like button each time switching to a new landmark, and then reconsider if
+
+
+for (var _i = 0; _i < pin.length; _i++) {
+  pin[_i].addEventListener("click", function () {
     heart.style.fill = "black";
 
     if (allTest[landmarkCount][0].like == true) {
@@ -356,19 +386,3 @@ for (var _i3 = 0; _i3 < pin.length; _i3++) {
     }
   });
 }
-
-pin_3.onclick = function () {
-  landmark_image.style.backgroundImage = "url('../image/landmarks/engenhos-da-calheta-madeira-2.jpg";
-  landmark_image.style.backgroundPosition = "-100px -130px";
-  lisbon.style.display = "none";
-  landmark_name.innerHTML = "Castelo São Jorge"; // landmark_image.style.backgroundSize = "cover";
-
-  landmark_test.onclick = function () {
-    question.innerHTML = "Why is castelo de são jorge located on that specific location?";
-    A.innerHTML = "A: Closer to the sky makes the towers warmer for the soldiers";
-    B.innerHTML = "B: His hill is the tallest closest to the river enabling height advantage and quick sea acess";
-    C.innerHTML = "C: There is not a real reason for the location of the castle";
-    D.innerHTML = "D: Lisbon being located in na area with 7 hills the 4rth one was chosen for superstitious reasons";
-    test_pos.style.display = "block";
-  };
-};
