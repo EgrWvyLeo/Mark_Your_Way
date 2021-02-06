@@ -19,7 +19,6 @@ var allTest = [
       question: "What type of architecture is Jeronimos built in?",
       options: ["A: Roman.", "B: Baroc.", "C: Gothic.", "D: Byzantine."],
       answer: "C: Gothic.",
-      like: false,
     },
     {
       num: "Q3",
@@ -27,7 +26,6 @@ var allTest = [
       question: "What type of landmark is Jeronimos?",
       options: ["A: Museum.", "B: Monastery.", "C: Statue.", "D: Church."],
       answer: "B: Monastery.",
-      like: false,
     },
   ],
   [
@@ -44,6 +42,7 @@ var allTest = [
       ],
       answer:
         "C: Point of embarkation and disembarkment for portuguese explorers.",
+      like: false,
     },
     {
       num: "Q2",

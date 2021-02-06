@@ -78,7 +78,29 @@ credits_close.onclick = function () {
 var like = document.querySelector(".like");
 var clear = document.querySelector(".clear");
 var Pin = document.querySelector("#Pin");
+var pin = document.querySelectorAll("div[id^='pin']"); // var pin = document.querySelectorAll(".pin");
+
 var clearStatus = false;
+var likeCondition = false; //like and default buttons
+
+like.addEventListener("click", function () {
+  if (likeCondition == false) {
+    likeCondition = true;
+
+    for (var i = 0; i < pin.length; i++) {
+      if (allTest[i][0].like == true) {
+        pin[i].style.backgroundColor = "red";
+      }
+    }
+  } else {
+    likeCondition = false;
+
+    for (var j = 0; j < pin.length; j++) {
+      pin[j].style.backgroundColor = "rgb(85, 221, 255)";
+    }
+  }
+}); //the hide and show buttons
+
 clear.addEventListener("click", function () {
   if (clearStatus == false) {
     Pin.style.display = "none";
@@ -90,8 +112,7 @@ clear.addEventListener("click", function () {
     clearStatus = false;
   }
 }); //some interaction of landmark btn with icons
-
-var heart = document.querySelector(".heart"); // landmark_like.addEventListener("mouseover", function () {
+// landmark_like.addEventListener("mouseover", function () {
 //   heart.style.fill = "#d7443e";
 // });
 // landmark_like.addEventListener("mouseout", function () {
@@ -141,7 +162,7 @@ var result = document.querySelector("#result");
 var ResultBox = document.querySelector("#ResultBox");
 var resultBox_questionBoard = document.querySelector("#resultBox_questionBoard");
 var resultBox_scoreBoard = document.querySelector("#resultBox_scoreBoard");
-var resultBox_countdown = document.querySelector("#resultBox_countdown"); //making close button
+var resultBox_countdown = document.querySelector("#resultBox_countdown"); //close button
 
 test_close.onclick = function () {
   test_pos.style.display = "none";
@@ -162,10 +183,8 @@ function showTest(index1, index2, totalQ) {
   B.innerHTML = allTest[index1][index2].options[1];
   C.innerHTML = allTest[index1][index2].options[2];
   D.innerHTML = allTest[index1][index2].options[3];
-} //landmark test button
+} //landmark test button function
 
-
-landmark_test.addEventListener("click", landmarkTestFunction);
 
 function landmarkTestFunction() {
   //link with countdown timer interaction
@@ -176,7 +195,8 @@ function landmarkTestFunction() {
   } //show the content of question
 
 
-  test.classList.remove("clearTest");
+  test.classList.remove("clearTest"); //remove result content
+
   ResultBox.style.display = "none"; //show the testing box
 
   test_pos.style.display = "block"; //show what is the first question appear on the box
@@ -212,23 +232,12 @@ result.addEventListener("click", function () {
 
 for (var i = 0; i < answer.length; i++) {
   answer[i].addEventListener("click", function () {
-    //once select an answer, disable the landmark test button
-    landmark_test.removeEventListener("click", landmarkTestFunction); //set up disableing timer count down
-
-    if (bool1 == true) {
-      second = 3;
-      minute = 1;
-      hour = 1;
-      var timer = setInterval(countdownTimer, 1000);
-      bool1 = false;
-    } // setTimeout(function () {
+    // setTimeout(function () {
     //   resultBox_countdown.innerHTML = "Next trial unlock";
     //   clearInterval(timer);
     //   landmark_test.addEventListener("click", landmarkTestFunction);
     // }, 10000);
     //get user answer and compare it with the correct answer
-
-
     var userSelect = this.innerHTML;
     var correctAnswer = allTest[landmarkCount][count].answer;
 
@@ -260,6 +269,7 @@ for (var i = 0; i < answer.length; i++) {
 var second = 3;
 var minute = 1;
 var hour = 1;
+var timer;
 
 function countdownTimer() {
   if (second <= 0) {
@@ -267,7 +277,7 @@ function countdownTimer() {
       if (hour <= 0) {
         resultBox_countdown.innerHTML = "Your Next trial has unlocked";
         landmark_test.addEventListener("click", landmarkTestFunction);
-        clearInterval(timer);
+        return clearInterval(timer);
       }
 
       minute = 2;
@@ -280,37 +290,72 @@ function countdownTimer() {
 
   second--;
   resultBox_countdown.innerHTML = "Your next trial will be unlocked in " + hour + "h: " + minute + "m: " + second + "s";
-} //ladnmark 1
+} //timer function
 
 
-pin_1.onclick = function () {
+function timerLink() {
+  //once select an answer, disable the landmark test button
+  landmark_test.removeEventListener("click", landmarkTestFunction); //set up disableing timer count down
+
+  if (bool1 == true) {
+    second = 3;
+    minute = 1;
+    hour = 1;
+    timer = setInterval(countdownTimer, 1000);
+    bool1 = false;
+  }
+} //landmark like button
+
+
+var heart = document.querySelector(".heart");
+var likeIt = false;
+landmark_like.addEventListener("click", function () {
+  if (likeIt == false) {
+    heart.style.fill = "#d7443e";
+    likeIt = true;
+    allTest[landmarkCount][0].like = true;
+  } else {
+    heart.style.fill = "black";
+    likeIt = false;
+    allTest[landmarkCount][0].like = false;
+  }
+}); //landnmarks
+
+pin_1.addEventListener("click", function () {
   landmark_image.style.backgroundImage = "url('../image/landmarks/Jerónimos_April_2009-4.jpg')";
   landmark_image.style.backgroundPosition = "-300px -100px";
   lisbon.style.display = "none";
   landmark_name.innerHTML = "Mosteiro dos Jerónimos";
-  landmarkCount = 0; //landmark like button
+  landmarkCount = 0;
+  landmark_test.addEventListener("click", landmarkTestFunction);
 
-  var likeIt = false;
-  landmark_like.addEventListener("click", function () {
-    if (likeIt == false) {
-      heart.style.fill = "#d7443e";
-      likeIt = true;
-      allTest[landmarkCount][0].like = true;
-    } else {
-      heart.style.fill = "black";
-      likeIt = false;
-    }
-  });
-};
-
-pin_2.onclick = function () {
+  for (var _i = 0; _i < answer.length; _i++) {
+    answer[_i].addEventListener("click", timerLink);
+  }
+});
+pin_2.addEventListener("click", function () {
   landmark_image.style.backgroundImage = "url('../image/landmarks/photo-1562620287-9309c2d9a460-816x612.jpg";
   landmark_image.style.backgroundPosition = "-200px -130px";
   lisbon.style.display = "none";
   landmark_name.innerHTML = "Torre de Belém"; // landmark_image.style.backgroundSize = "900px";
 
   landmarkCount = 1;
-};
+  landmark_test.addEventListener("click", landmarkTestFunction);
+
+  for (var _i2 = 0; _i2 < answer.length; _i2++) {
+    answer[_i2].addEventListener("click", timerLink);
+  }
+}); //reset the landmark like button each time switching to a new landmark, and then reconsider if
+
+for (var _i3 = 0; _i3 < pin.length; _i3++) {
+  pin[_i3].addEventListener("click", function () {
+    heart.style.fill = "black";
+
+    if (allTest[landmarkCount][0].like == true) {
+      heart.style.fill = "#d7443e";
+    }
+  });
+}
 
 pin_3.onclick = function () {
   landmark_image.style.backgroundImage = "url('../image/landmarks/engenhos-da-calheta-madeira-2.jpg";

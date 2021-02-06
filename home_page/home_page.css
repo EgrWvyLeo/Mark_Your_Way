@@ -562,7 +562,6 @@ div[class^="unlockable"] {
 /* pins on the map  */
 #Pin {
   position: relative;
-  /* display: block; */
   width: 50%;
   height: 739px;
   top: 50px;
@@ -570,7 +569,6 @@ div[class^="unlockable"] {
 .PinHide {
   display: none;
 }
-
 div[id^="pin"] {
   position: absolute;
   background-color: rgb(85, 221, 255);
