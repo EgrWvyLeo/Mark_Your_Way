@@ -86,14 +86,16 @@ var likeCondition = false; //like and default buttons
 like.addEventListener("click", function () {
   if (likeCondition == false) {
     likeCondition = true;
+    like.innerHTML = "Default";
 
     for (var i = 0; i < pin.length; i++) {
       if (allTest[i][0].like == true) {
-        pin[i].style.backgroundColor = "red";
+        pin[i].style.backgroundColor = "#FFD700";
       }
     }
   } else {
     likeCondition = false;
+    like.innerHTML = "Like";
 
     for (var j = 0; j < pin.length; j++) {
       pin[j].style.backgroundColor = "rgb(85, 221, 255)";
@@ -111,7 +113,7 @@ clear.addEventListener("click", function () {
     clear.innerHTML = "Hide";
     clearStatus = false;
   }
-}); // landmarks pin and testing interaction
+}); // define landmark
 
 var pin_1 = document.querySelector("#pin_1");
 var pin_2 = document.querySelector("#pin_2");
@@ -152,10 +154,11 @@ var resultBox_scoreBoard = document.querySelector("#resultBox_scoreBoard");
 var resultBox_countdown = document.querySelector("#resultBox_countdown"); //close button
 
 test_close.onclick = function () {
-  if (allTest[landmarkCount][0].point == 0 && allTest[landmarkCount][1].point == 0 // allTest[landmarkCount][2].point == 0
-  ) {
-      landmarkDescription.innerHTML = allTest[landmarkCount][0].description;
-    }
+  //determine when to show the description for each landmark
+  if (allTest[landmarkCount][0].lock == 0) {
+    landmarkDescription.innerHTML = allTest[landmarkCount][0].description;
+  } //each test trial reducing individual question points
+
 
   if (pointReduce == true) {
     pointReduce = false;
@@ -167,21 +170,16 @@ test_close.onclick = function () {
         allTest[landmarkCount][i].point = 0;
       }
     }
-  }
+  } //other small things
+
 
   test_pos.style.display = "none";
   count = 0;
-  result.style.display = "none"; // skip.style.display = "block";
-
+  result.style.display = "none";
   next.style.display = "block";
   scoreEachLandmark = 0;
   questionPass = 0;
-}; // for (let i = 0; i < allTest[landmarkCount].length; i++) {
-//   if (allTest[landmarkCount][i].point < 0) {
-//     allTest[landmarkCount][i].point = 0;
-//   }
-// }
-// get all the tests from array
+}; // get all the tests from array allTest (in another js file)
 
 
 function showTest(index1, index2, totalQ) {
@@ -212,21 +210,21 @@ function landmarkTestFunction() {
 
   test_pos.style.display = "block"; //show what is the first question appear on the box
 
-  showTest(landmarkCount, count, totalQuestion[landmarkCount]);
+  showTest(landmarkCount, count, allTest[landmarkCount][0].quantity);
 } // next button
 
 
 next.addEventListener("click", function () {
   //show the next question each time when clicking the next button
   count++;
-  showTest(landmarkCount, count, totalQuestion[landmarkCount]); //removing these things whenever user in the next question
+  showTest(landmarkCount, count, allTest[landmarkCount][0].quantity); //removing these things whenever user in the next question
 
   for (var i = 0; i < answer.length; i++) {
     answer[i].classList.remove("disable", "tick", "cross");
   } //set up when the result button replace the next button
 
 
-  if (count == totalQuestion[landmarkCount] - 1) {
+  if (count == allTest[landmarkCount][0].quantity - 1) {
     result.style.display = "block";
     next.style.display = "none";
   }
@@ -237,7 +235,7 @@ result.addEventListener("click", function () {
   test.classList.add("clearTest"); //display result content
 
   ResultBox.style.display = "flex";
-  resultBox_questionBoard.innerHTML = "You get " + questionPass + " questions correct out of total " + totalQuestion[landmarkCount] + " questions";
+  resultBox_questionBoard.innerHTML = "You get " + questionPass + " questions correct out of total " + allTest[landmarkCount][0].quantity + " questions";
   resultBox_scoreBoard.innerHTML = "You get total " + scoreEachLandmark + " points for this landmark";
 }); // get the user score if he successfully get the correct answer
 
@@ -262,7 +260,9 @@ for (var i = 0; i < answer.length; i++) {
 
       this.classList.add("tick"); //removing available points from this question
 
-      allTest[landmarkCount][count].point = 0;
+      allTest[landmarkCount][count].point = 0; //reducing the lock
+
+      allTest[landmarkCount][0].lock -= 1;
     } else {
       //add wrong sign
       this.classList.add("cross");
@@ -273,7 +273,7 @@ for (var i = 0; i < answer.length; i++) {
       answer[j].classList.add("disable");
     }
   });
-} //set up daily timer
+} //set up random daily points timer
 
 
 var second = 60;
@@ -281,9 +281,7 @@ var minute = 59;
 var hour = 23;
 var timer;
 var pointDaily = document.querySelector(".pointDaily");
-var getPointDaily = document.querySelector(".getPointDaily"); // var pointDailyRandom = Math.floor(Math.random() * 10 + 1);
-// getPointDaily.innerHTML = "Grab " + pointDailyRandom + " points";
-
+var getPointDaily = document.querySelector(".getPointDaily");
 getPointDaily.addEventListener("click", function () {
   second = 60;
   minute = 59;
@@ -316,6 +314,56 @@ function countdownTimer() {
   }
 
   second--;
+} //individual landnmark
+
+
+var landmarkDescription = document.querySelector(".landmarkDescription");
+pin_1.addEventListener("click", function () {
+  landmarkCount = 0;
+  landmark_image.style.backgroundPosition = "-300px -100px";
+});
+pin_2.addEventListener("click", function () {
+  landmarkCount = 1;
+  landmark_image.style.backgroundPosition = "-200px -130px";
+});
+pin_3.addEventListener("click", function () {
+  landmarkCount = 2;
+  landmark_image.style.backgroundPosition = "-100px -130px";
+});
+pin_4.addEventListener("click", function () {
+  landmarkCount = 3;
+  landmark_image.style.backgroundPosition = "-100px -50px";
+});
+pin_5.addEventListener("click", function () {
+  landmarkCount = 4;
+  landmark_image.style.backgroundPosition = "-100px -50px";
+});
+pin_6.addEventListener("click", function () {
+  landmarkCount = 5;
+  landmark_image.style.backgroundPosition = "-100px -50px";
+}); //set up a system of each landmark pin click event
+
+for (var _i = 0; _i < pin.length; _i++) {
+  pin[_i].addEventListener("click", function () {
+    lisbon.style.display = "none";
+    landmark_image.style.backgroundImage = allTest[landmarkCount][0].img;
+    landmark_name.innerHTML = allTest[landmarkCount][0].name; //reset the landmark like button each time switching to a new landmark, and then reconsider if
+
+    likeIt = false;
+    heart.style.fill = "black";
+
+    if (allTest[landmarkCount][0].like == true) {
+      likeIt = true;
+      heart.style.fill = "#d7443e";
+    } //solve the problem of one landmark description appear on all the landmark
+
+
+    if (allTest[landmarkCount][0].lock == 0) {
+      landmarkDescription.innerHTML = allTest[landmarkCount][0].description;
+    } else {
+      landmarkDescription.innerHTML = "Get one question correct to unlock this landmark description";
+    }
+  });
 } //landmark like button
 
 
@@ -332,57 +380,3 @@ landmark_like.addEventListener("click", function () {
     allTest[landmarkCount][0].like = false;
   }
 });
-var landmarkDescription = document.querySelector(".landmarkDescription"); //landnmarks
-
-pin_1.addEventListener("click", function () {
-  landmark_image.style.backgroundImage = "url('../image/landmarks/Jerónimos_April_2009-4.jpg')";
-  landmark_image.style.backgroundPosition = "-300px -100px";
-  lisbon.style.display = "none";
-  landmark_name.innerHTML = "Mosteiro dos Jerónimos";
-  landmarkCount = 0;
-
-  if (allTest[landmarkCount][0].point == 0 && allTest[landmarkCount][1].point == 0 && allTest[landmarkCount][2].point == 0) {
-    landmarkDescription.innerHTML = allTest[landmarkCount][0].description;
-  } else {
-    landmarkDescription.innerHTML = "Get all the questions correct to unlock this landmark description";
-  }
-});
-pin_2.addEventListener("click", function () {
-  landmark_image.style.backgroundImage = "url('../image/landmarks/photo-1562620287-9309c2d9a460-816x612.jpg";
-  landmark_image.style.backgroundPosition = "-200px -130px";
-  lisbon.style.display = "none";
-  landmark_name.innerHTML = "Torre de Belém"; // landmark_image.style.backgroundSize = "900px";
-
-  landmarkCount = 1;
-
-  if (allTest[landmarkCount][0].point == 0 && allTest[landmarkCount][1].point == 0 && allTest[landmarkCount][2].point == 0) {
-    landmarkDescription.innerHTML = allTest[landmarkCount][0].description;
-  } else {
-    landmarkDescription.innerHTML = "Get all the questions correct to unlock this landmark description";
-  }
-});
-
-pin_3.onclick = function () {
-  landmark_image.style.backgroundImage = "url('../image/landmarks/engenhos-da-calheta-madeira-2.jpg";
-  landmark_image.style.backgroundPosition = "-100px -130px";
-  lisbon.style.display = "none";
-  landmark_name.innerHTML = "Castelo São Jorge";
-  landmarkCount = 2;
-
-  if (allTest[landmarkCount][0].point == 0 && allTest[landmarkCount][1].point == 0 && allTest[landmarkCount][2].point == 0) {
-    landmarkDescription.innerHTML = allTest[landmarkCount][0].description;
-  } else {
-    landmarkDescription.innerHTML = "Get all the questions correct to unlock this landmark description";
-  }
-}; //reset the landmark like button each time switching to a new landmark, and then reconsider if
-
-
-for (var _i = 0; _i < pin.length; _i++) {
-  pin[_i].addEventListener("click", function () {
-    heart.style.fill = "black";
-
-    if (allTest[landmarkCount][0].like == true) {
-      heart.style.fill = "#d7443e";
-    }
-  });
-}

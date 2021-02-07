@@ -8,66 +8,103 @@
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
     Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
 }
-body {
-  background-color: rgb(223, 223, 96);
+/* body {
+  background-color: rgb(184, 184, 96);
+} */
+:root {
+  --blue1: rgb(0, 183, 255);
+}
+
+.left {
+  position: absolute;
+  /* height: 788px; */
+  height: 100%;
+  width: 50%;
+  /* background-color: rgb(223, 223, 109); */
+  /* background-image: linear-gradient(rgb(2, 90, 255), rgb(241, 117, 35)); */
+  background-color: var(--blue1);
+  z-index: 1;
+  box-shadow: 10px 0 8px 15px var(--blue1);
+}
+
+.right {
+  position: absolute;
+  right: 0px;
+  width: 50%;
+  height: 100%;
+  background-image: url(../image/GettyImages-478897762.jpg);
+  background-size: cover;
+  background-repeat: no-repeat;
 }
 
 .title {
   margin-top: 100px;
-  font-size: 100px;
-  font-weight: 700;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
-    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  font-size: 80px;
+  font-weight: 900;
+  text-shadow: 5px 5px 5px white;
 }
 
-<<<<<<< HEAD
-.webInfo1{
-  margin-top: 100px;
-=======
 .webInfo1 {
-  margin-top: 200px;
->>>>>>> 80121ccfc862f11d4d5d8c4aa5ee374dd61880cd
-  margin-left: 200px;
-  margin-right: 200px;
-  text-align: center;
-  font-size: 15px;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
-    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  position: absolute;
+  display: block;
+  margin: 0 90px;
+  top: 35%;
+  font-size: 20px;
+  font-weight: 600;
+  text-align: justify;
+  line-height: 30px;
 }
 
 .webInfo2 {
-  margin-top: 200px;
-  margin-left: 200px;
-  margin-right: 200px;
+  position: absolute;
+  display: block;
+  width: 160px;
+  height: 30px;
+  left: 50%;
+  transform: translate(-50%, 0);
+  top: 70%;
   font-size: 25px;
-  font-weight: 50px;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
-    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  font-weight: 700;
+  cursor: pointer;
+}
+.webInfo2:hover {
+  border-bottom: 3px solid black;
+}
+.webInfo2 a {
+  text-decoration: none;
 }
 
-#signup_button {
-  position: absolute;
-  left: 40%;
-  top: 75%;
-  border-radius: 20px;
-}
-
+/* buttons */
+#signup_button,
 #login_button {
+  display: block;
   position: absolute;
-  right: 40%;
-  top: 75%;
+  height: 60px;
+  width: 150px;
+  top: 80%;
   border-radius: 20px;
+  font-size: 20px;
+  font-weight: 700;
+}
+#signup_button {
+  left: 20%;
+}
+#login_button {
+  right: 20%;
 }
 
 /* Full-width input fields */
 input[type="text"],
 input[type="password"] {
-  width: 100%;
+  width: 90%;
   padding: 15px;
-  margin: 5px 0 22px 0;
+  margin: 5px 5px 22px 5px;
   display: inline-block;
   border: none;
   background: #f1f1f1;
+  text-align: left;
+  border-radius: 20px;
+  /* border: 3px solid #ddd; */
 }
 
 input[type="text"]:focus,
@@ -76,45 +113,38 @@ input[type="password"]:focus {
   outline: none;
 }
 
-/* Add a background color when the inputs get focus */
-input {
-  background-color: #ddd;
-  outline: none;
-}
-
 /* Set a style for all buttons */
 button {
-  background-color: #4caf50;
+  background-color: #ee7220;
   color: white;
   padding: 14px 20px;
   margin: 8px 0;
   border: none;
   cursor: pointer;
   width: 100%;
-  opacity: 0.9;
+  opacity: 0.8;
 }
 
 button:hover {
   opacity: 1;
 }
 
-/* Extra styles for the cancel button */
+/* cancel and signup buttons */
+.clearfix {
+  display: flex;
+  justify-content: space-around;
+}
 .cancelbtn {
-  /* padding: 14px 20px; */
   background-color: #f44336;
 }
-
-/* Float cancel and signup buttons and add an equal width */
+.signupbtn {
+  background-color: rgb(28, 223, 38);
+}
 .cancelbtn,
 .signupbtn {
-  float: left;
-  width: 50%;
+  width: 45%;
+  border-radius: 20px;
 }
-
-/* Add padding to container elements */
-/* .container {
-  padding: 16px;
-} */
 
 /* The Modal (background) */
 .modal {
@@ -123,19 +153,27 @@ button:hover {
   z-index: 1; /* Sit on top */
   left: 0;
   top: 0;
-  width: 100%; /* Full width */
+  width: 50%; /* Full width */
   height: 100%; /* Full height */
   overflow: auto; /* Enable scroll if needed */
-  background-color: #474e5d;
+  background-color: var(--blue1);
   padding-top: 50px;
 }
 
 /* Modal Content/Box */
 .modal-content {
   background-color: #fefefe;
-  margin: 5% auto 15% auto; /* 5% from the top, 15% from the bottom and centered */
   border: 1px solid #888;
-  width: 80%; /* Could be more or less, depending on screen size */
+  width: 60%;
+  border-radius: 30px;
+}
+#content1 {
+  margin: 85px auto 0 auto;
+  height: 550px;
+}
+#content2 {
+  margin: 145px auto 0 auto;
+  height: 350px;
 }
 
 /* Style the horizontal ruler */
@@ -161,16 +199,16 @@ hr {
 }
 
 /* Clear floats */
-.clearfix::after {
+/* .clearfix::after {
   content: "";
   clear: both;
   display: table;
-}
+} */
 
 /* Change styles for cancel button and signup button on extra small screens */
-@media screen and (max-width: 300px) {
+/* @media screen and (max-width: 300px) {
   .cancelbtn,
   .signupbtn {
     width: 100%;
   }
-}
+} */

@@ -646,6 +646,22 @@ div[id^="pin"]:active {
   top: 546px;
   left: 480px;
 }
+#pin_4 {
+  top: 82%;
+  left: 63%;
+}
+#pin_5 {
+  top: 79%;
+  left: 62%;
+}
+#pin_6 {
+  top: 78%;
+  left: 65%;
+}
+/* #pin_7 {
+  top: 77%;
+  left: 62%;
+} */
 
 /* question and answer box  */
 #test_pos {
@@ -800,6 +816,7 @@ div[id^="pin"]:active {
   border: none;
   margin: 20px;
   display: block;
+  outline: none;
 }
 .answer:hover {
   /* border: 2px solid black; */
