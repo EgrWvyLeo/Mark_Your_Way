@@ -276,6 +276,7 @@ div[class^="landmark"] {
   background-image: url("../image/5a0b634b7c86cc3d038b47f0.jpeg");
   background-position: -300px -100px;
   background-size: 1000px;
+  /* background-size: 100%; */
   background-repeat: no-repeat;
   border-radius: 30px;
   font-size: 40px;
@@ -639,8 +640,8 @@ div[id^="pin"]:active {
   left: 100px;
 }
 #pin_2 {
-  top: 683px;
-  left: 53px;
+  top: 94%;
+  left: 7%;
 }
 #pin_3 {
   top: 546px;
@@ -658,10 +659,42 @@ div[id^="pin"]:active {
   top: 78%;
   left: 65%;
 }
-/* #pin_7 {
+#pin_7 {
+  top: 32%;
+  left: 93%;
+}
+#pin_8 {
+  top: 94%;
+  left: 13%;
+}
+#pin_9 {
+  top: 65%;
+  left: 43%;
+}
+#pin_10 {
+  top: 80%;
+  left: 68%;
+}
+#pin_11 {
+  top: 62%;
+  left: 52%;
+}
+#pin_12 {
   top: 77%;
-  left: 62%;
-} */
+  left: 70%;
+}
+#pin_13 {
+  top: 92%;
+  left: 16%;
+}
+#pin_14 {
+  top: 76%;
+  left: 60%;
+}
+#pin_15 {
+  top: 81%;
+  left: 58%;
+}
 
 /* question and answer box  */
 #test_pos {

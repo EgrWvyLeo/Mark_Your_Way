@@ -81,16 +81,18 @@ var Pin = document.querySelector("#Pin");
 var pin = document.querySelectorAll("div[id^='pin']"); // var pin = document.querySelectorAll(".pin");
 
 var clearStatus = false;
-var likeCondition = false; //like and default buttons
+var likeCondition = false; //like and default progress buttons
 
 like.addEventListener("click", function () {
   if (likeCondition == false) {
     likeCondition = true;
-    like.innerHTML = "Default";
+    like.innerHTML = "Progress";
 
     for (var i = 0; i < pin.length; i++) {
       if (allTest[i][0].like == true) {
         pin[i].style.backgroundColor = "#FFD700";
+      } else {
+        pin[i].style.backgroundColor = "rgb(85, 221, 255)";
       }
     }
   } else {
@@ -98,7 +100,10 @@ like.addEventListener("click", function () {
     like.innerHTML = "Like";
 
     for (var j = 0; j < pin.length; j++) {
-      pin[j].style.backgroundColor = "rgb(85, 221, 255)";
+      // pin[j].style.backgroundColor = "rgb(85, 221, 255)";
+      if (allTest[j][0].pass == true) {
+        pin[j].style.backgroundColor = "#00FF00";
+      }
     }
   }
 }); //the hide and show buttons
@@ -156,6 +161,12 @@ var resultBox_countdown = document.querySelector("#resultBox_countdown"); //clos
 test_close.onclick = function () {
   //determine when to show the description for each landmark
   if (allTest[landmarkCount][0].lock == 0) {
+    allTest[landmarkCount][0].pass = true; // for (let i = 0; i < pin.length; i++) {
+    // if (allTest[i][0].pass == true) {
+
+    pin[landmarkCount].style.backgroundColor = "#00FF00"; //   }
+    // }
+
     landmarkDescription.innerHTML = allTest[landmarkCount][0].description;
   } //each test trial reducing individual question points
 
@@ -341,6 +352,47 @@ pin_5.addEventListener("click", function () {
 pin_6.addEventListener("click", function () {
   landmarkCount = 5;
   landmark_image.style.backgroundPosition = "-100px -50px";
+});
+pin_7.addEventListener("click", function () {
+  landmarkCount = 6;
+  landmark_image.style.backgroundPosition = "-300px -150px";
+});
+pin_8.addEventListener("click", function () {
+  landmarkCount = 7;
+  landmark_image.style.backgroundPosition = "center";
+  landmark_image.style.backgroundSize = "670px";
+});
+pin_9.addEventListener("click", function () {
+  landmarkCount = 8;
+  landmark_image.style.backgroundPosition = "-180px -160px";
+});
+pin_10.addEventListener("click", function () {
+  landmarkCount = 9;
+  landmark_image.style.backgroundPosition = "-100px -60px";
+});
+pin_11.addEventListener("click", function () {
+  landmarkCount = 10;
+  landmark_image.style.backgroundPosition = "center";
+});
+pin_12.addEventListener("click", function () {
+  landmarkCount = 11;
+  landmark_image.style.backgroundPosition = "center";
+  landmark_image.style.backgroundSize = "800px";
+});
+pin_13.addEventListener("click", function () {
+  landmarkCount = 12;
+  landmark_image.style.backgroundPosition = "center";
+  landmark_image.style.backgroundSize = "800px";
+});
+pin_14.addEventListener("click", function () {
+  landmarkCount = 13;
+  landmark_image.style.backgroundPosition = "center";
+  landmark_image.style.backgroundSize = "700px";
+});
+pin_15.addEventListener("click", function () {
+  landmarkCount = 14;
+  landmark_image.style.backgroundPosition = "center";
+  landmark_image.style.backgroundSize = "700px";
 }); //set up a system of each landmark pin click event
 
 for (var _i = 0; _i < pin.length; _i++) {
@@ -361,7 +413,7 @@ for (var _i = 0; _i < pin.length; _i++) {
     if (allTest[landmarkCount][0].lock == 0) {
       landmarkDescription.innerHTML = allTest[landmarkCount][0].description;
     } else {
-      landmarkDescription.innerHTML = "Get one question correct to unlock this landmark description";
+      landmarkDescription.innerHTML = "Get all quiz questions correct in this landmark to unlock landmark description!";
     }
   });
 } //landmark like button
