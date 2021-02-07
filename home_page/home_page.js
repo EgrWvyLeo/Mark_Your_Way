@@ -10,6 +10,37 @@ closeMenu.onmousedown = function close_side_nav() {
   sn.style.display = "none";
 };
 
+//menu nav open system
+var sides = document.querySelectorAll(".sides");
+
+for (let i = 0; i < sides.length; i++) {
+  sides[i].addEventListener("click", () => {
+    for (let j = 0; j < centerBox_all.length; j++) {
+      centerBox_all[j].style.display = "none";
+    }
+  });
+}
+
+//menu content close button
+var closeBox = document.querySelector(".centerBox_close");
+
+closeBox.addEventListener("click", () => {
+  for (let i = 0; i < centerBox_all.length; i++) {
+    centerBox_all[i].style.display = "none";
+  }
+});
+
+//tutorial
+var Tutorial = document.querySelector("#Tutorial");
+var tutorial = document.querySelector("#tutorial");
+
+Tutorial.addEventListener("click", () => {
+  // for (let i = 0; i < centerBox_all.length; i++) {
+  //   centerBox_all[i].style.display = "none";
+  // }
+  tutorial.style.display = "block";
+});
+
 // style
 var centerBox_all = document.querySelectorAll(".centerBox");
 
@@ -18,9 +49,9 @@ var style = document.querySelector("#style");
 var style_close = document.querySelector("#style_close");
 
 Style.onclick = function () {
-  for (let i = 0; i < centerBox_all.length; i++) {
-    centerBox_all[i].style.display = "none";
-  }
+  // for (let i = 0; i < centerBox_all.length; i++) {
+  //   centerBox_all[i].style.display = "none";
+  // }
   style.style.display = "block";
 };
 
@@ -34,9 +65,9 @@ var credits = document.querySelector("#credits");
 var credits_close = document.querySelector("#credits_close");
 
 Credits.onclick = function () {
-  for (let i = 0; i < centerBox_all.length; i++) {
-    centerBox_all[i].style.display = "none";
-  }
+  // for (let i = 0; i < centerBox_all.length; i++) {
+  //   centerBox_all[i].style.display = "none";
+  // }
   credits.style.display = "block";
 };
 credits_close.onclick = function () {

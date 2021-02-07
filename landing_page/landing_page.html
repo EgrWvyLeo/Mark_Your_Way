@@ -32,19 +32,24 @@
 
       <!-- form  -->
       <div id="id01" class="modal">
-        <form id="content1" class="modal-content" action="/action_page.php">
+        <form
+          id="content1"
+          class="modal-content"
+          action="action_page.php"
+          method="POST"
+        >
           <div class="container">
             <h1>Sign Up</h1>
             <br />
             <p>Please fill in this form to create an account.</p>
             <hr />
 
-            <label for="nickname"><b>Name</b></label>
+            <label for="name"><b>Name</b></label>
             <input
               type="text"
               class="signup_name"
               placeholder="Enter Your Name"
-              name="nickname"
+              name="name"
               required
             />
 
@@ -100,7 +105,12 @@
 
       <!-- form  -->
       <div id="id02" class="modal">
-        <form id="content2" class="modal-content" action="/action_page.php">
+        <form
+          id="content2"
+          class="modal-content"
+          action="action_page.php"
+          method="POST"
+        >
           <div class="container">
             <h1>Log In</h1>
             <br />

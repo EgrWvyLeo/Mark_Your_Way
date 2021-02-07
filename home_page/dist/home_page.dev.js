@@ -11,8 +11,35 @@ menu.onmousedown = function open_side_nav() {
 
 closeMenu.onmousedown = function close_side_nav() {
   sn.style.display = "none";
-}; // style
+}; //menu nav open system
 
+
+var sides = document.querySelectorAll(".sides");
+
+for (var i = 0; i < sides.length; i++) {
+  sides[i].addEventListener("click", function () {
+    for (var j = 0; j < centerBox_all.length; j++) {
+      centerBox_all[j].style.display = "none";
+    }
+  });
+} //menu content close button
+
+
+var closeBox = document.querySelector(".centerBox_close");
+closeBox.addEventListener("click", function () {
+  for (var _i = 0; _i < centerBox_all.length; _i++) {
+    centerBox_all[_i].style.display = "none";
+  }
+}); //tutorial
+
+var Tutorial = document.querySelector("#Tutorial");
+var tutorial = document.querySelector("#tutorial");
+Tutorial.addEventListener("click", function () {
+  // for (let i = 0; i < centerBox_all.length; i++) {
+  //   centerBox_all[i].style.display = "none";
+  // }
+  tutorial.style.display = "block";
+}); // style
 
 var centerBox_all = document.querySelectorAll(".centerBox");
 var Style = document.querySelector("#Style");
@@ -20,10 +47,9 @@ var style = document.querySelector("#style");
 var style_close = document.querySelector("#style_close");
 
 Style.onclick = function () {
-  for (var i = 0; i < centerBox_all.length; i++) {
-    centerBox_all[i].style.display = "none";
-  }
-
+  // for (let i = 0; i < centerBox_all.length; i++) {
+  //   centerBox_all[i].style.display = "none";
+  // }
   style.style.display = "block";
 };
 
@@ -37,10 +63,9 @@ var credits = document.querySelector("#credits");
 var credits_close = document.querySelector("#credits_close");
 
 Credits.onclick = function () {
-  for (var i = 0; i < centerBox_all.length; i++) {
-    centerBox_all[i].style.display = "none";
-  }
-
+  // for (let i = 0; i < centerBox_all.length; i++) {
+  //   centerBox_all[i].style.display = "none";
+  // }
   credits.style.display = "block";
 };
 
@@ -88,11 +113,11 @@ like.addEventListener("click", function () {
     likeCondition = true;
     like.innerHTML = "Progress";
 
-    for (var i = 0; i < pin.length; i++) {
-      if (allTest[i][0].like == true) {
-        pin[i].style.backgroundColor = "#FFD700";
+    for (var _i2 = 0; _i2 < pin.length; _i2++) {
+      if (allTest[_i2][0].like == true) {
+        pin[_i2].style.backgroundColor = "#FFD700";
       } else {
-        pin[i].style.backgroundColor = "rgb(85, 221, 255)";
+        pin[_i2].style.backgroundColor = "rgb(85, 221, 255)";
       }
     }
   } else {
@@ -174,11 +199,11 @@ test_close.onclick = function () {
   if (pointReduce == true) {
     pointReduce = false;
 
-    for (var i = 0; i < allTest[landmarkCount].length; i++) {
-      allTest[landmarkCount][i].point -= 1;
+    for (var _i3 = 0; _i3 < allTest[landmarkCount].length; _i3++) {
+      allTest[landmarkCount][_i3].point -= 1;
 
-      if (allTest[landmarkCount][i].point < 0) {
-        allTest[landmarkCount][i].point = 0;
+      if (allTest[landmarkCount][_i3].point < 0) {
+        allTest[landmarkCount][_i3].point = 0;
       }
     }
   } //other small things
@@ -214,8 +239,8 @@ function landmarkTestFunction() {
   //link with countdown timer interaction
   bool1 = true; //again removing these things
 
-  for (var i = 0; i < answer.length; i++) {
-    answer[i].classList.remove("disable", "tick", "cross");
+  for (var _i4 = 0; _i4 < answer.length; _i4++) {
+    answer[_i4].classList.remove("disable", "tick", "cross");
   } //show the content of question
 
 
@@ -234,8 +259,8 @@ next.addEventListener("click", function () {
   count++;
   showTest(landmarkCount, count, allTest[landmarkCount][0].quantity); //removing these things whenever user in the next question
 
-  for (var i = 0; i < answer.length; i++) {
-    answer[i].classList.remove("disable", "tick", "cross");
+  for (var _i5 = 0; _i5 < answer.length; _i5++) {
+    answer[_i5].classList.remove("disable", "tick", "cross");
   } //set up when the result button replace the next button
 
 
@@ -266,8 +291,8 @@ result.addEventListener("click", function () {
 
 var pointReduce = false;
 
-for (var i = 0; i < answer.length; i++) {
-  answer[i].addEventListener("click", function () {
+for (var _i6 = 0; _i6 < answer.length; _i6++) {
+  answer[_i6].addEventListener("click", function () {
     pointReduce = true; //get user answer and compare it with the correct answer
 
     var userSelect = this.innerHTML;
@@ -419,8 +444,8 @@ pin_15.addEventListener("click", function () {
   landmark_image.style.backgroundSize = "700px";
 }); //set up a system of each landmark pin click event
 
-for (var _i = 0; _i < pin.length; _i++) {
-  pin[_i].addEventListener("click", function () {
+for (var _i7 = 0; _i7 < pin.length; _i7++) {
+  pin[_i7].addEventListener("click", function () {
     //solve the problem if only one question available
     if (allTest[landmarkCount][0].quantity == 1) {
       result.style.display = "block";

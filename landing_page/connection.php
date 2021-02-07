@@ -1,8 +1,7 @@
 <?php
 $servername = "localhost";
 $username = "root";
-$password = "";
-$database = "mark_your_way";
+$password = "root";
 
 // Create connection
 $conn = new mysqli($servername, $username, $password);
