@@ -100,7 +100,8 @@ like.addEventListener("click", function () {
     like.innerHTML = "Like";
 
     for (var j = 0; j < pin.length; j++) {
-      // pin[j].style.backgroundColor = "rgb(85, 221, 255)";
+      pin[j].style.backgroundColor = "rgb(85, 221, 255)";
+
       if (allTest[j][0].pass == true) {
         pin[j].style.backgroundColor = "#00FF00";
       }
@@ -161,13 +162,12 @@ var resultBox_countdown = document.querySelector("#resultBox_countdown"); //clos
 test_close.onclick = function () {
   //determine when to show the description for each landmark
   if (allTest[landmarkCount][0].lock == 0) {
-    allTest[landmarkCount][0].pass = true; // for (let i = 0; i < pin.length; i++) {
-    // if (allTest[i][0].pass == true) {
-
-    pin[landmarkCount].style.backgroundColor = "#00FF00"; //   }
-    // }
-
+    allTest[landmarkCount][0].pass = true;
+    pin[landmarkCount].style.backgroundColor = "#00FF00";
     landmarkDescription.innerHTML = allTest[landmarkCount][0].description;
+    landmarkDescription.style.fontSize = "18px";
+    landmarkDescription.style.padding = "10px 20px";
+    landmarkDescription.style.textAlign = "justify";
   } //each test trial reducing individual question points
 
 
@@ -186,8 +186,12 @@ test_close.onclick = function () {
 
   test_pos.style.display = "none";
   count = 0;
-  result.style.display = "none";
-  next.style.display = "block";
+
+  if (allTest[landmarkCount][0].quantity > 1) {
+    result.style.display = "none";
+    next.style.display = "block";
+  }
+
   scoreEachLandmark = 0;
   questionPass = 0;
 }; // get all the tests from array allTest (in another js file)
@@ -246,8 +250,18 @@ result.addEventListener("click", function () {
   test.classList.add("clearTest"); //display result content
 
   ResultBox.style.display = "flex";
-  resultBox_questionBoard.innerHTML = "You get " + questionPass + " questions correct out of total " + allTest[landmarkCount][0].quantity + " questions";
-  resultBox_scoreBoard.innerHTML = "You get total " + scoreEachLandmark + " points for this landmark";
+
+  if (questionPass == 0) {
+    resultBox_questionBoard.innerHTML = "Oh! You get " + questionPass + " questions correct out of total " + allTest[landmarkCount][0].quantity + " questions :(";
+  } else {
+    resultBox_questionBoard.innerHTML = "WOW! You get " + questionPass + " questions correct out of total " + allTest[landmarkCount][0].quantity + " questions :)";
+  }
+
+  if (scoreEachLandmark == 0) {
+    resultBox_scoreBoard.innerHTML = "nooo.. You get a total of " + scoreEachLandmark + " points this time :(";
+  } else {
+    resultBox_scoreBoard.innerHTML = "Congratulation! You get a total of " + scoreEachLandmark + " points this time :)";
+  }
 }); // get the user score if he successfully get the correct answer
 
 var pointReduce = false;
@@ -332,30 +346,37 @@ var landmarkDescription = document.querySelector(".landmarkDescription");
 pin_1.addEventListener("click", function () {
   landmarkCount = 0;
   landmark_image.style.backgroundPosition = "-300px -100px";
+  landmark_image.style.backgroundSize = "970px";
 });
 pin_2.addEventListener("click", function () {
   landmarkCount = 1;
   landmark_image.style.backgroundPosition = "-200px -130px";
+  landmark_image.style.backgroundSize = "1000px";
 });
 pin_3.addEventListener("click", function () {
   landmarkCount = 2;
   landmark_image.style.backgroundPosition = "-100px -130px";
+  landmark_image.style.backgroundSize = "970px";
 });
 pin_4.addEventListener("click", function () {
   landmarkCount = 3;
-  landmark_image.style.backgroundPosition = "-100px -50px";
+  landmark_image.style.backgroundPosition = "-50px -20px";
+  landmark_image.style.backgroundSize = "800px";
 });
 pin_5.addEventListener("click", function () {
   landmarkCount = 4;
   landmark_image.style.backgroundPosition = "-100px -50px";
+  landmark_image.style.backgroundSize = "1000px";
 });
 pin_6.addEventListener("click", function () {
   landmarkCount = 5;
-  landmark_image.style.backgroundPosition = "-100px -50px";
+  landmark_image.style.backgroundPosition = "-100px -140px";
+  landmark_image.style.backgroundSize = "900px";
 });
 pin_7.addEventListener("click", function () {
   landmarkCount = 6;
   landmark_image.style.backgroundPosition = "-300px -150px";
+  landmark_image.style.backgroundSize = "970px";
 });
 pin_8.addEventListener("click", function () {
   landmarkCount = 7;
@@ -365,14 +386,17 @@ pin_8.addEventListener("click", function () {
 pin_9.addEventListener("click", function () {
   landmarkCount = 8;
   landmark_image.style.backgroundPosition = "-180px -160px";
+  landmark_image.style.backgroundSize = "1100px";
 });
 pin_10.addEventListener("click", function () {
   landmarkCount = 9;
   landmark_image.style.backgroundPosition = "-100px -60px";
+  landmark_image.style.backgroundSize = "1000px";
 });
 pin_11.addEventListener("click", function () {
   landmarkCount = 10;
   landmark_image.style.backgroundPosition = "center";
+  landmark_image.style.backgroundSize = "1000px";
 });
 pin_12.addEventListener("click", function () {
   landmarkCount = 11;
@@ -397,6 +421,13 @@ pin_15.addEventListener("click", function () {
 
 for (var _i = 0; _i < pin.length; _i++) {
   pin[_i].addEventListener("click", function () {
+    //solve the problem if only one question available
+    if (allTest[landmarkCount][0].quantity == 1) {
+      result.style.display = "block";
+      next.style.display = "none";
+    } //other changes
+
+
     lisbon.style.display = "none";
     landmark_image.style.backgroundImage = allTest[landmarkCount][0].img;
     landmark_name.innerHTML = allTest[landmarkCount][0].name; //reset the landmark like button each time switching to a new landmark, and then reconsider if
@@ -414,6 +445,9 @@ for (var _i = 0; _i < pin.length; _i++) {
       landmarkDescription.innerHTML = allTest[landmarkCount][0].description;
     } else {
       landmarkDescription.innerHTML = "Get all quiz questions correct in this landmark to unlock landmark description!";
+      landmarkDescription.style.fontSize = "25px";
+      landmarkDescription.style.padding = "90px 40px 0px 40px";
+      landmarkDescription.style.textAlign = "center";
     }
   });
 } //landmark like button

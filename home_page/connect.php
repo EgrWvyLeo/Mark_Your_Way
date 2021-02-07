@@ -1,10 +1,15 @@
 <?php
-$sn = 'localhost';
-  $db = 'mark_your_way';
-  $un = 'root'; 
-  $pw = ''; 
+$servername = "localhost";
+$username = "root";
+$password = "";
+$database = "mark_your_way";
 
-  $conn = new mysqli($sn, $un, $pw, $db);
-  if ($conn->connect_error) die("Fatal Error");
-  ?>
+// Create connection
+$conn = new mysqli($servername, $username, $password);
 
+// Check connection
+if ($conn->connect_error) {
+  die("Connection failed: " . $conn->connect_error);
+}
+echo "Connected successfully";
+?>

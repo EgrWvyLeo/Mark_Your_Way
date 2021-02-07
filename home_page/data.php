@@ -1,5 +1,5 @@
 
-  $conn = new mysqli($sn, $un, $pw, $db);
+   $conn = new mysqli($sn, $un, $pw, $db);
   if ($conn->connect_error) die("Fatal Error");
 ​
   $query  = "SELECT * FROM students";
@@ -24,6 +24,7 @@
 ​
   $result->close();
   $conn->close();
+
 
 
 

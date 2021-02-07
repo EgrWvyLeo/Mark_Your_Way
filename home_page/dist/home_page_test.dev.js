@@ -75,7 +75,7 @@ var allTest = [[{
 }], [{
   landmark: 4,
   name: "Praça do Comércio",
-  img: "url(../image/landmarks/praca-do-comercio.jpg)",
+  img: "url(../image/landmarks/praccca7a-do-comecc81rcio-portugal_l.jpeg)",
   quantity: 2,
   lock: 2,
   num: "Q1",
@@ -167,7 +167,7 @@ var allTest = [[{
   lock: 2,
   num: "Q1",
   question: "What important portuguese historical event does this monument celebrate?",
-  optins: ["A: 	Portugues monarchy.", "B: Portuguese discoveries.", "C: Portuguese culture.", "D: Portuguese traditions."],
+  options: ["A: 	Portugues monarchy.", "B: Portuguese discoveries.", "C: Portuguese culture.", "D: Portuguese traditions."],
   answer: "B: Portuguese discoveries.",
   point: 6,
   like: false,
