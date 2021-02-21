@@ -113,7 +113,7 @@ div[class^="top"] {
 }
 .logoImg {
   position: absolute;
-  left: 550px;
+  left: 530px;
   background-image: url(../image/logo/IMG_3907.jpg);
   background-repeat: no-repeat;
   background-size: 50px 50px;
@@ -261,6 +261,19 @@ div[class^="top"] {
   background-color: cornflowerblue;
 } */
 
+.point_total {
+  position: absolute;
+  /* background-color: rgba(85, 221, 255, 0.541); */
+  bottom: 40px;
+  /* left: 375px; */
+  left: 55%;
+  font-size: 25px;
+  color: rgb(85, 221, 255);
+  font-weight: 700;
+  border: 3px solid rgb(85, 221, 255);
+  border-radius: 5px;
+}
+
 .like,
 .clear {
   background-color: var(--lightOrangeDarker);
@@ -351,33 +364,18 @@ div[class^="landmark"] {
   /* text-shadow: 1px 1px 1px rgb(255, 255, 255); */
 }
 
-/* #Capa_1 {
-  width: 100px;
-  height: 100px;
-  z-index: 100;
-  position: absolute;
-  top: 500px;
-  left: 500px;
-} */
-
 .heart {
   fill: rgb(0, 0, 0);
-  /* width: 30px;
-  height: 30px; */
 }
-/* .heart:hover {
-  fill: #d7443e;
-} */
-/* .heartToggle {
-  fill: #d7443e;
-} */
 .likeHeart {
   position: absolute;
+  margin-left: -20px;
   width: 40px;
-  left: 520px;
+  /* left: 520px; */
   top: 5px;
 }
 .landmark_like {
+  position: relative;
   width: 50px;
   border-radius: 10px;
   /* bottom: 10px;
@@ -436,9 +434,12 @@ div[class^="landmark"] {
 /* landmark description */
 .landmarkDescription {
   position: absolute;
+  overflow: auto;
   top: 486px;
-  right: 30px;
-  width: 663px;
+  /* right: 30px; */
+  right: 5%;
+  /* width: 663px; */
+  width: 92%;
   height: 235px;
   /* background-color: var(--yellow3); */
   background-color: rgb(250, 247, 83);
@@ -811,17 +812,7 @@ div[id^="pin"]:active {
   font-size: 30px;
   font-weight: 900;
 }
-.point_total {
-  position: absolute;
-  /* background-color: rgba(85, 221, 255, 0.541); */
-  bottom: 40px;
-  left: 375px;
-  font-size: 25px;
-  color: rgb(85, 221, 255);
-  font-weight: 700;
-  border: 3px solid rgb(85, 221, 255);
-  border-radius: 5px;
-}
+
 /* #skip {
   position: absolute;
   top: 50px;
